@@ -1,0 +1,156 @@
+﻿@** Copyright 2015 Seven Spikes Ltd. All rights reserved. (http://www.nop-templates.com)
+    * http://www.nop-templates.com/t/licensinginfo
+*@
+
+@using System.Text.RegularExpressions
+@using Nop.Core;
+@using Nop.Core.Infrastructure
+@using SevenSpikes.Nop.Plugins.AnywhereSliders.Models.Nivo
+@using SevenSpikes.Nop.Framework.Theme
+@using SevenSpikes.Nop.Plugins.AnywhereSliders.MVC
+@using System.Globalization
+
+@model NivoModel
+
+@{
+    Layout = null;
+
+    string skin = Model.Settings.Theme ?? "";
+
+    string showCaptionsClass = string.Empty;
+
+    if (!Model.Settings.ShowCaption)
+    {
+        showCaptionsClass = "no-captions";
+    }
+}
+
+@helper RenderSliderLine(string pictureUrl, string text, string alt, bool haveLink, string link)
+{
+    if (!string.IsNullOrEmpty(pictureUrl))
+    {
+        if (string.IsNullOrWhiteSpace(alt))
+        {
+            alt = "slider image";
+        }
+
+        if (haveLink && !string.IsNullOrEmpty(link))
+        {
+            if (Model.Settings.ShowCaption)
+            {
+                <a href="@link">
+                    <img src="@pictureUrl" data-thumb="@pictureUrl" alt="@alt" title="@text" />
+                </a>
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(text))
+                {
+                    text = Regex.Replace(text, @"<[^>]*(>|$)", String.Empty);
+                }
+                
+                <a href="@link" title="@text">
+                    <img src="@pictureUrl" data-thumb="@pictureUrl" alt="@alt" />
+                </a>
+            }
+        }
+        else
+        {
+            <img src="@pictureUrl" data-thumb="@pictureUrl" alt="@alt" title="@text" />
+        }
+    }
+}
+
+@if (Model.SliderImages != null && Model.SliderImages.Count > 0)
+{
+    var browser = Request.Browser;
+    if (browser.Browser == "IE" && browser.MajorVersion == 8)
+    {
+        Html.AppendCssFileParts("~/Plugins/SevenSpikes.Nop.Plugins.AnywhereSliders/Styles/nivo/ie8-fix.css");
+    }
+
+    Html.AddCssFileParts("~/Plugins/SevenSpikes.Nop.Plugins.AnywhereSliders/Styles/nivo/nivo-slider.css");
+    Html.AddCssFileParts("~/Plugins/SevenSpikes.Nop.Plugins.AnywhereSliders/Themes/" + Model.Theme + "/Content/nivo/nivo.css");
+
+    var supportRtl = EngineContext.Current.Resolve<IWorkContext>().WorkingLanguage.Rtl;
+    if (supportRtl)
+    {
+        Html.AddCssFileParts("~/Plugins/SevenSpikes.Nop.Plugins.AnywhereSliders/Styles/nivo/nivo.rtl.css");
+        Html.AddCssFileParts("~/Plugins/SevenSpikes.Nop.Plugins.AnywhereSliders/Themes/" + Model.Theme + "/Content/nivo/nivo.rtl.css");
+    }
+
+    if (Model.SliderImages.Count == 1)
+    {
+        var sliderImage = Model.SliderImages[0];
+        var alt = String.IsNullOrEmpty(sliderImage.Alt) ? "banner" : sliderImage.Alt;
+        var strippedDisplayText = sliderImage.DisplayText;
+
+        if (!string.IsNullOrEmpty(strippedDisplayText))
+        {
+            strippedDisplayText = Regex.Replace(strippedDisplayText, @"<[^>]*(>|$)", String.Empty);
+        }
+
+        <div class="slider-wrapper @showCaptionsClass">
+            @if (Model.Settings.Links && !String.IsNullOrEmpty(sliderImage.Url))
+            {
+                if (Model.Settings.ShowCaption)
+                {
+                    <a href="@sliderImage.Url">
+                        <img class="nivo-main-image" src="@sliderImage.PicturePath" alt="@alt" />
+                    </a>
+                }
+                else
+                {
+                    <a href="@sliderImage.Url" title="@strippedDisplayText">
+                        <img class="nivo-main-image" src="@sliderImage.PicturePath" alt="@alt" />
+                    </a>
+                }
+            }
+            else
+            {
+                <img class="nivo-main-image" src="@sliderImage.PicturePath" alt="@alt" title="@strippedDisplayText" />
+            }
+
+            <div class="nivo-caption" style="display: block;">@Html.Raw(sliderImage.DisplayText)</div>
+        </div>
+    }
+    else
+    {
+        // add javascript
+        Html.AddScriptParts("~/Plugins/SevenSpikes.Core/Scripts/swipeEvents.min.js");
+        Html.AddScriptParts("~/Plugins/SevenSpikes.Nop.Plugins.AnywhereSliders/Scripts/nivo/jquery.nivo.slider.js");
+
+        <div class="slider-wrapper theme-@skin @showCaptionsClass">
+            <div id="@Model.SliderHtmlElementId" class="nivoSlider">
+                @foreach (var sliderImage in Model.SliderImages)
+                {
+                    @RenderSliderLine(sliderImage.PicturePath, sliderImage.DisplayText, sliderImage.Alt, Model.Settings.Links, sliderImage.Url)
+                }
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(window).load(function () {
+                $('#@Model.SliderHtmlElementId').nivoSlider({
+                    effect: '@Model.Settings.Effect', // Specify sets like: 'fold,fade,sliceDown'
+                    slices: @Model.Settings.Slices, // For slice animations
+                    boxCols:  @Model.Settings.BoxCols , // For box animations
+                    boxRows: @Model.Settings.BoxRows, // For box animations
+                    animSpeed: @Model.Settings.AnimationSpeed, // Slide transition speed
+                    pauseTime: @Model.Settings.AutoSlideInterval, // How long each slide will show
+                    startSlide: 0, // Set starting Slide (0 index)
+                    directionNav: @Model.Settings.EnableDirectionNavigation.ToString().ToLower(), // Next & Prev navigation
+                    controlNav: @Model.Settings.EnableControlNavigation.ToString().ToLower(), // 1,2,3... navigation
+                    controlNavThumbs: @Model.Settings.EnableControlNavigationThumbs.ToString().ToLower(), // Use thumbnails for Control Nav
+                    pauseOnHover: @Model.Settings.PauseOnHover.ToString().ToLower(), // Stop animation while hovering
+                    manualAdvance: false, // Force manual transitions
+                    prevText: '@Model.Settings.PrevText', // Prev directionNav text
+                    nextText: '@Model.Settings.NextText', // Next directionNav text
+                    randomStart: @Model.Settings.RandomStart.ToString().ToLower(), // Start on a random slide
+                    afterLoad: function() {
+                        $(document).trigger({ type: "nopAnywhereSlidersFinishedLoading", targetId: '@Model.SliderHtmlElementId' });
+                    }
+                });
+            });
+        </script>
+    }
+}

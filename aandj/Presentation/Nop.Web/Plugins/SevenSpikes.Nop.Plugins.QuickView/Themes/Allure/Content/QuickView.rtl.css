@@ -1,0 +1,52 @@
+﻿/*
+* Copyright 2014 Seven Spikes Ltd. All rights reserved. (http://www.nop-templates.com)
+* http://www.nop-templates.com/t/licensinginfo
+*/
+
+/********* START BUTTON *********/
+
+    .product-list .quick-view-button {
+        right: -190px;
+        left: auto;
+    }
+
+    .product-grid .quick-view-button a,
+    .product-list .quick-view-button a{
+        padding: 8px 46px 8px 21px;
+    }
+        .product-list .quick-view-button a,
+        .product-grid .quick-view-button a:hover {
+            background-position: right -21px;
+        }
+            .product-grid .quick-view-button a,
+            .product-list .quick-view-button a:hover {
+                background-position: right 7px;
+            }
+
+
+/********** MAIN QUICKVIEW WINDOW **********/
+
+    .quickViewWindow .product-name {
+        text-align: right;
+    }
+    
+    .quickView .k-window-titlebar.k-header .k-window-actions {
+        right: auto;
+        left: 13px;
+    }
+
+/********** GALLERY & OVERVIEW *********/
+
+    .quickViewWindow .gallery {
+        margin: 20px 15px 20px 0;
+    }
+    .quickViewWindow .links-panel a {
+        padding: 10px 0 10px 15px;
+        background: url('images/icon-link.png') left 15px no-repeat;
+    }
+    .quickViewWindow .overview {
+        margin: 20px 0 20px 10px;
+    }
+    .quickViewWindow .back-in-stock-subscription {
+	    clear: right;
+    }

@@ -1,0 +1,37 @@
+.inputs input[type="text"],
+.inputs input[type="password"],
+.inputs select, .inputs textarea {
+	max-width: none !important;
+}
+
+/* PRODUCT & CATEGORY GRIDS */
+
+    .home-page-category-grid .title a, .sub-category-item .title a,
+    .product-grid .item-box .hover-details {
+        background-image: url(../img/ie8-bg-white-opacity.png);
+        background-repeat: repeat;
+    }
+
+/* MY ACCOUNT */
+
+    .registration-page .date-of-birth select, 
+    .account-page .date-of-birth select {
+        width: 110px;
+    }
+
+/* SHOPPING CART */
+
+    .cart-collaterals .coupon-code input[type="submit"] {
+        padding: 8px 0 ;
+    }
+    .shopping-cart-page .common-buttons input {
+        min-width: 98px !important;
+        padding: 6px 12px 6px 36px !important;
+    }
+
+.allure-theme-roller {
+    left: 0;
+}
+.allure-theme-roller.opened {
+    left: -300px;
+}

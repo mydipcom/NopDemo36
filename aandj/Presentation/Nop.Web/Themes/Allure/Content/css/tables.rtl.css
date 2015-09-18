@@ -1,0 +1,25 @@
+﻿.prices-row {
+	float: right;
+}
+.compare-products-table .overview p:first-child {
+	text-align: left;
+}
+
+.compare-products-table .overview img{
+	left: 0;
+	right: 0;
+}
+.prices-row > div{
+	border-right: 1px solid #c9c9c9;
+	border-left: 0;
+}
+.prices-row:first-child > div{
+	border-right: 0;
+}
+
+.footable-row-detail {
+	text-align: right;
+}
+.footable-row-detail-cell {
+	text-align: right !important;
+}

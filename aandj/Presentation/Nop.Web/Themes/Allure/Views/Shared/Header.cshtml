@@ -1,0 +1,69 @@
+﻿@using Nop.Core
+@using Nop.Core.Infrastructure
+@using Nop.Services.Localization
+@using Nop.Web.Framework.Themes
+@{
+    var currentThemeName = EngineContext.Current.Resolve<IThemeContext>().WorkingThemeName;
+    var logoPath = "~/Themes/" + currentThemeName + "/Content/img/logo.png";
+
+    var allureLogo = @Html.Widget("allure_theme_logo");
+}
+<div class="header">
+    @Html.Widget("header")
+    <div class="header-links-wrapper">
+        <div class="header-centering">
+            <div class="header-selectors-wrapper">
+
+                @Html.Action("TaxTypeSelector", "Common")
+                @Html.Action("CurrencySelector", "Common")
+                @Html.Action("LanguageSelector", "Common")
+
+                @Html.Widget("header_selectors")
+            </div>
+            @Html.Action("HeaderLinks", "Common")
+        </div>
+    </div>
+    <div class="header-centering">
+        <div class="header-logo">
+            <a href="@Url.RouteUrl("HomePage")" class="logo">
+                @if (!MvcHtmlString.IsNullOrEmpty(allureLogo))
+                {
+                    @allureLogo
+                }
+                else
+                {
+                    string storeName = EngineContext.Current.Resolve<IStoreContext>().CurrentStore.GetLocalized(x => x.Name);
+                    <img title="" alt="@storeName" src="@Url.Content(logoPath)">
+                }
+            </a>
+        </div>
+        <div class="desktop-header-right">
+            <div class="search-box store-search-box">
+                @Html.Action("SearchBox", "Catalog")
+            </div>
+            <div class="desktop-cart">
+                <div class="shopping-cart-link">
+                    <a href="@Url.RouteUrl("ShoppingCart")">@T("ShoppingCart")</a>
+                    @Html.Action("FlyoutShoppingCart", "ShoppingCart")
+                </div>
+            </div>
+        </div>
+        <div class="justAFixingDivBefore"></div>
+        <div class="header-menu">
+            <div class="close-menu">
+                <span>@T("SevenSpikes.Themes.Common.CloseMenu")</span>
+            </div>
+            @{
+                var menuHtml = Html.Widget("theme_header_menu");
+            }
+            @if (!MvcHtmlString.IsNullOrEmpty(menuHtml))
+            {
+                @menuHtml
+            }
+            else
+            {
+                @Html.Action("TopMenu", "Catalog")
+            }
+        </div>
+    </div>
+</div>

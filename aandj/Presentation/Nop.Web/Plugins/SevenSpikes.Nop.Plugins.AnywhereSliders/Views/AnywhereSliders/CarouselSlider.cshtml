@@ -1,0 +1,58 @@
+﻿@** Copyright 2012 Seven Spikes Ltd. All rights reserved. (http://www.nop-templates.com)
+* http://www.nop-templates.com/t/licensinginfo
+*@
+
+@{
+    Layout = null;
+}
+@using SevenSpikes.Nop.Plugins.AnywhereSliders.Models.Carousel
+@using System.Globalization
+@model CarouselModel
+@if (Model.SliderImages != null && Model.SliderImages.Count > 0)
+{
+    Html.AppendCssFileParts("~/Plugins/SevenSpikes.Nop.Plugins.AnywhereSliders/Styles/coinSlider/coin-slider-styles.css");
+    Html.AddScriptParts("~/Plugins/SevenSpikes.Nop.Plugins.AnywhereSliders/Scripts/coinSlider/coin-slider.min.js");
+    Html.AddScriptParts("~/Plugins/SevenSpikes.Core/Scripts/swipeEvents.min.js");
+    
+    <script type="text/javascript">  
+	    $(document).ready(function() {
+	        $('#@Model.SliderHtmlElementId').coinslider({ 
+                width: @Model.Settings.Width.ToString(CultureInfo.InvariantCulture), 
+                height: @Model.Settings.Height.ToString(CultureInfo.InvariantCulture), 
+                navigation: @Model.Settings.Navigation.ToString().ToLower(), 
+                delay: @Model.Settings.AutoSlideInterval.ToString(CultureInfo.InvariantCulture),
+                effect: 'straight', 
+                links: @Model.Settings.Links.ToString().ToLower(), 
+                hoverPause: @Model.Settings.HoverPause.ToString().ToLower()
+                });
+
+	        $('#@Model.SliderHtmlElementId')
+                .swipeEvents()
+                .bind("swipeLeft",  function(e){ $(".cs-prev").trigger("click"); })
+                .bind("swipeRight", function(e){ $(".cs-next").trigger("click"); })
+	            .bind("swipeUp", function(e){ })    
+	            .bind("swipeDown", function(e){ });    
+	    });
+            
+    </script>
+
+    <div id='@Model.SliderHtmlElementId'>
+        @foreach (var sliderImage in Model.SliderImages)
+        {
+            var url = "#";
+            if (!string.IsNullOrWhiteSpace(sliderImage.Url))
+            {
+                url = sliderImage.Url;
+            }
+            <a href='@url'>
+                <img width='@Model.Settings.Width' height='@Model.Settings.Height' alt='@sliderImage.Alt' src='@sliderImage.PicturePath' />
+                @if (Model.Settings.ShowTitle)
+                {
+                    <span>
+                        @sliderImage.DisplayText
+                    </span>
+                }
+            </a>
+        }
+    </div>
+}

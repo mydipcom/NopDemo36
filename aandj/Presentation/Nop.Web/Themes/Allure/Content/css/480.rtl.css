@@ -1,0 +1,91 @@
+﻿/*=====================================================
+    
+    TABLETS PORTRAIT & SMARTPHONES LANDSCAPE
+
+=====================================================*/
+
+@media all and (min-width: 481px) {
+	
+    .footer-middle .footer-block,
+    .item-box,
+    .product-list .picture,
+    .variant-picture,
+    .address-item, .order-item,
+    .shipment-details-page .shipment-overview > ul {
+	    float: right;
+    }
+
+    .product-list .details{
+	    margin-right: 220px;
+	    margin-left: 0;
+    }
+    .product-variant-line:before{
+	    right: 0;
+	    left: auto;
+    }
+    .variant-picture + .variant-overview{
+	    text-align: right;
+	    margin-right: 210px;
+	    margin-left: 0;
+    }
+    .order-review-data ul{
+	    float: right;
+	    margin: 0 0 30px 2%;
+    }
+    .order-review-data ul:last-child{
+	    margin-left: 0;
+    }
+
+/* TOPICS */
+
+    .topic-block-title h2:before{
+	    left: 75%;
+	    right: auto;
+    }
+    .topic-block-title h2:after{
+	    right: 75%;
+	    left: auto;
+    }
+
+}
+
+@media all and (min-width: 480px) and (max-width: 768px) {
+
+    .side-2 .block {
+	    float: right;
+    }
+
+/* NEWS */
+
+    .news-list-homepage .title strong:before{
+	    left: 75%;
+	    right: auto;
+    }
+    .news-list-homepage .title strong:after{
+	    right: 75%;
+	    left: auto;
+    }
+    
+}
+
+@media all and (min-width: 640px) {
+
+    .comment-info {
+	    float: right;
+    }
+    .comment-content {
+	    text-align: right;
+    }
+
+    .comment-info + .comment-content{
+	    margin: 0 135px 0 0;
+    }
+    .comment-time{
+	    left: 0;
+	    right: auto;
+    }
+    .comment-title{
+	    padding: 5px 0 5px 170px;
+    }
+
+}

@@ -1,0 +1,49 @@
+﻿/*
+* Copyright 2014 Seven Spikes Ltd. All rights reserved. (http://www.nop-templates.com)
+* http://www.nop-templates.com/t/licensinginfo
+*/
+
+/*** QUANTITY BOX & BUY BUTTON ***/
+
+.ajax-cart-button-wrapper input[type="text"],
+.ajax-cart-button-wrapper select {
+    margin-left: -2px;
+    margin-right: 0;
+}
+
+/****** MAIN WINDOW *****/
+
+    .ajaxCart .k-window-titlebar.k-header .k-window-actions {
+        left: 15px;
+        right: auto;
+    }
+
+
+
+/*** SINGLE PRODUCT WINDOW ***/
+
+.productAddedToCartWindowSummary a {
+    text-align: right;
+}
+    .productAddedToCartWindowSummary a:before {
+        left: auto;
+        right: 3px;
+    }
+
+/*** GROPED PRODUCTS WINDOW ***/
+
+.miniProductDetailsView .product-details-page .overview {
+    margin: 0 150px 0 0;
+}
+
+.miniProductDetailsView .add-to-cart > *,
+.miniProductDetailsView .add-button-wrap {
+    float: right;
+}
+
+.miniProductDetailsView .add-to-cart > * {
+    margin: 0 -2px 0 0;
+}
+.ajaxCart .tax-shipping-info {
+    text-align: right;
+}

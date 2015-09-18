@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="English">
+  <LocaleResource Name="SevenSpikes.AllureTheme">
+    <Value>Nop Allure Theme</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Admin.Settings">
+    <Value>Settings</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Admin.Settings.ThemeSettings">
+    <Value>Allure Theme Settings</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Admin.Settings.ThemeSettings.Preset">
+    <Value>Preset</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Admin.Settings.ThemeSettings.Preset.Hint">
+    <Value>Choose your color preset of the theme.</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Admin.Settings.ThemeSettings.Texture">
+    <Value>Texture</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Admin.Settings.ThemeSettings.Texture.Hint">
+    <Value>Choose your background texture of the theme.</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Admin.Settings.ThemeSettings.AlternativeProductPageLayout">
+    <Value>Alternative Product Page Layout</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Admin.Settings.ThemeSettings.AlternativeProductPageLayout.Hint">
+    <Value>If checked the product page layout willbe with image on the left and quick tabs on the bottom of the page.</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.AffiliateExtras">
+    <Value>Affiliate and Extras</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.BecomeAffiliate">
+    <Value>Become Affiliate</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.Brands">
+    <Value>Brands</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.CompanyInfo">
+    <Value>Company info</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.CustomerAssistance">
+    <Value>Customer Assistance</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.CustomerServices">
+    <Value>Customer services</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.DeliveryInformation">
+    <Value>Delivery Information</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.Email">
+    <Value>support [at] allurestore.com</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.EmailDomain">
+    <Value>store.com</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.EmailAt">
+    <Value>[at]</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.EmailName">
+    <Value>sales</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.FAQ">
+    <Value>Frequently Asked Questions</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.FollowUs">
+    <Value>Follow us</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.GiftVouchers">
+    <Value>Gift Vouchers</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.GoTo">
+    <Value>Go to...</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.GoToPage">
+    <Value>Product's page</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.Help">
+    <Value>Help</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.InternationalShipping">
+    <Value>International Shipping</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.LegalInformation">
+    <Value>Legal Information</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.LicenseAgreement">
+    <Value>License Agreement</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.Mobile">
+    <Value>+111 (Mobile) 012345</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.OurOffers">
+    <Value>Our Offers</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.PaymentOptions">
+    <Value>Payment options</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.Phone">
+    <Value>+222 (Phone) 987654</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.Search">
+    <Value>Search</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.SecurePayment">
+    <Value>Secure Payment</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.ServiceSupport">
+    <Value>Service and Support</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.ShippingReturns">
+    <Value>Shipping and Returns</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.Skype">
+    <Value>skype_allure</Value>
+  </LocaleResource>
+  <LocaleResource Name="SevenSpikes.Themes.Allure.Common.Social">
+    <Value>Connect with us:</Value>
+  </LocaleResource>
+  <LocaleResource Name="HomePage">
+    <Value>Home</Value>
+  </LocaleResource>
+</Language>

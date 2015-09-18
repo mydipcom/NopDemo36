@@ -1,0 +1,14 @@
+.product-details-page .full-description,
+.product-details-page .product-specs-box, 
+.ui-tabs .product-specs-box .title {
+    display: none;
+}
+.ui-tabs .product-specs-box,
+.ui-tabs .product-reviews-page,
+.ui-tabs .full-description  {
+    display: block;
+}
+
+.productTabs-body p {
+    margin: 8px 0;
+}

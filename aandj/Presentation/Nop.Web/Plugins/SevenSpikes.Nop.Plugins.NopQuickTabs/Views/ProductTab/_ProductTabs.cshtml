@@ -1,0 +1,52 @@
+﻿@** Copyright 2015 Seven Spikes Ltd. All rights reserved. (http://www.nop-templates.com)
+* http://www.nop-templates.com/t/licensinginfo
+*@
+
+@using Nop.Core.Infrastructure
+@using Nop.Core
+@using SevenSpikes.Nop.Plugins.NopQuickTabs
+@model SevenSpikes.Nop.Plugins.NopQuickTabs.Models.TabUIModel
+
+@{
+    if (Model.Tabs.Count == 0)
+    {
+        return;
+    }
+}
+
+@{
+    
+    Html.AddScriptParts("~/Scripts/jquery-ui-1.10.3.custom.min.js");
+
+    Html.AddScriptParts("~/Plugins/SevenSpikes.Nop.Plugins.NopQuickTabs/Scripts/ProductTabs.js");
+
+    Html.AddCssFileParts(String.Format("~/Plugins/{0}/Themes/{1}/Content/QuickTabs.css", Constants.PluginFolderName, Model.Settings.Theme));
+
+    var supportRtl = EngineContext.Current.Resolve<IWorkContext>().WorkingLanguage.Rtl;
+    if (supportRtl)
+    {
+        Html.AddCssFileParts(String.Format("~/Plugins/{0}/Themes/{1}/Content/QuickTabs.rtl.css", Constants.PluginFolderName, Model.Settings.Theme));
+    }
+
+    var storeLocation = EngineContext.Current.Resolve<IWebHelper>().GetStoreLocation();
+
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $('#quickTabs').on("click", "#add-review", function () {
+                AddReview("@storeLocation", "@Model.ProductId");
+            });
+            $('#quickTabs').off("click.contactus").on("click.contactus", "#send-contact-us-form", function () {
+                sendContactUsForm("@storeLocation", "@Model.ProductId");
+            });
+        });
+    </script>
+   
+    if (Model.Settings.EnableAjax)
+    {
+        @Html.Partial(Constants.ViewProductTabsWithAjaxPartial)
+    }
+    else
+    {
+        @Html.Partial(Constants.ViewProductTabsWithoutAjaxPartial)
+    }    
+}

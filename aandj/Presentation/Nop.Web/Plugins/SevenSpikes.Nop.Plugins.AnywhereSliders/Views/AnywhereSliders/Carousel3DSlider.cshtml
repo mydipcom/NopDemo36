@@ -1,0 +1,74 @@
+﻿@** Copyright 2012 Seven Spikes Ltd. All rights reserved. (http://www.nop-templates.com)
+* http://www.nop-templates.com/t/licensinginfo
+*@
+
+@{
+    Layout = null;
+}
+@using System.Globalization
+@using SevenSpikes.Nop.Plugins.AnywhereSliders.Models.Carousel3D
+@model Carousel3DModel
+@if (Model.SliderImages != null && Model.SliderImages.Count > 0)
+{
+    // add css
+    Html.AppendCssFileParts("~/Plugins/SevenSpikes.Nop.Plugins.AnywhereSliders/Styles/carousel3d/carousel3d.css");
+
+    // add javascript
+    Html.AddScriptParts("~/Plugins/SevenSpikes.Nop.Plugins.AnywhereSliders/Scripts/carousel3d/textshadow.js");
+    Html.AddScriptParts("~/Plugins/SevenSpikes.Nop.Plugins.AnywhereSliders/Scripts/carousel3d/easing.js");
+    Html.AddScriptParts("~/Plugins/SevenSpikes.Nop.Plugins.AnywhereSliders/Scripts/carousel3d/hoverIntent.js");
+    Html.AddScriptParts("~/Plugins/SevenSpikes.Nop.Plugins.AnywhereSliders/Scripts/carousel3d/cloud-carousel.1.0.5.min.js");
+    Html.AddScriptParts("~/Plugins/SevenSpikes.Core/Scripts/swipeEvents.min.js");
+    
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#@Model.SliderHtmlElementId").CloudCarousel({
+            reflHeight: 0,
+            reflGap: 2,
+            titleBox: jQuery('#pj_carousel_title'),
+            reflOpacity: 0,
+            altBox: jQuery('#pj_carousel_alt'),
+            buttonLeft: jQuery('#but1'),
+            buttonRight: jQuery('#but2'),
+            yRadius: @Model.Settings.YRadius.ToString(CultureInfo.InvariantCulture),
+            xPos: @Model.Settings.XPosition.ToString(CultureInfo.InvariantCulture),
+            yPos: @Model.Settings.YPosition.ToString(CultureInfo.InvariantCulture),
+            speed: @Model.Settings.Speed.ToString(CultureInfo.InvariantCulture),
+            mouseWheel: @Model.Settings.MouseWheel.ToString(CultureInfo.InvariantCulture),
+            autoRotateDelay: @Model.Settings.AutoRotateDelay.ToString(CultureInfo.InvariantCulture),
+            autoRotate: '@Model.Settings.AutoRotate.ToString()'
+        });
+
+        $("#@Model.SliderHtmlElementId")
+            .swipeEvents()
+            .bind("swipeLeft",  function(e){ jQuery("#but1").trigger("mouseup"); })
+            .bind("swipeRight", function(e){ jQuery("#but2").trigger("mouseup"); })
+            .bind("swipeUp", function(e){ })
+            .bind("swipeDown", function(e){ });
+    });
+    </script>
+
+    <div class="pjcaroumain">
+        <div style="width: @Model.Settings.WidthPx; position: relative; height: 0; z-index: 2;">
+            <div id="pjncarrows">
+                <a id="but1" class="carouselLeft"></a><a id="but2" class="carouselRight"></a>
+            </div>
+        </div>
+        <div style="">
+            <div id="@Model.SliderHtmlElementId" style="width: @Model.Settings.WidthPx; height: @Model.Settings.HeightPx; z-index: 0;">
+                @foreach (var sliderImage in Model.SliderImages)
+                {
+                    var url = "#";
+                    if (!string.IsNullOrWhiteSpace(sliderImage.Url))
+                    {
+                        url = sliderImage.Url;
+                    }
+                    <a href="@url" class="title" title="@sliderImage.DisplayText">
+                        <img width="@Model.Settings.PictureWidth" height="@Model.Settings.PictureHeight" class="cloudcarousel" src="@sliderImage.PicturePath" alt="@sliderImage.Alt"/>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+}

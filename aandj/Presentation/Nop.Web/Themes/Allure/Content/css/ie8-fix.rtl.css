@@ -1,0 +1,14 @@
+/* SHOPPING CART */
+
+    .shopping-cart-page .common-buttons input {
+        padding: 6px 36px 6px 12px !important;
+    }
+    
+.allure-theme-roller {
+    right: 0;
+    left: auto;
+}
+.allure-theme-roller.opened {
+    right: -300px;
+    left: auto;
+}

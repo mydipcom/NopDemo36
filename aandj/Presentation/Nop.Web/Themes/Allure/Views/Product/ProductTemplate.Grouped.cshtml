@@ -1,0 +1,211 @@
+﻿@model ProductDetailsModel
+@using Nop.Core
+@using Nop.Core.Domain.Seo;
+@using Nop.Core.Infrastructure;
+@using Nop.Services.Localization;
+@using Nop.Services.Configuration
+@using Nop.Web.Models.Catalog;
+@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+
+    //title, meta
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    var seoSettings = EngineContext.Current.Resolve<SeoSettings>();
+    //canonical URL
+    if (seoSettings.CanonicalUrlsEnabled)
+    {
+        var productUrl = Url.RouteUrl("Product", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+        Html.AddCanonicalUrlParts(productUrl);
+    }
+
+    //open graph META tags
+    if (seoSettings.OpenGraphMetaTags)
+    {
+        var storeName = EngineContext.Current.Resolve<IStoreContext>().CurrentStore.GetLocalized(x => x.Name);
+        Html.AddHeadCustomParts("<meta property=\"og:type\" content=\"product\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:title\" content=\"" + Html.Encode(Model.Name) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:description\" content=\"" + Html.Encode(Model.MetaDescription) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:url\" content=\"" + Request.Url.AbsoluteUri + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:site_name\" content=\"" + Html.Encode(storeName) + "\" />");
+    }
+
+    //Twitter META tags
+    if (seoSettings.TwitterMetaTags)
+    {
+        var storeName = EngineContext.Current.Resolve<IStoreContext>().CurrentStore.GetLocalized(x => x.Name);
+        Html.AddHeadCustomParts("<meta property=\"twitter:card\" content=\"summary\" />");
+        Html.AddHeadCustomParts("<meta property=\"twitter:site\" content=\"" + Html.Encode(storeName) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"twitter:title\" content=\"" + Html.Encode(Model.Name) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"twitter:description\" content=\"" + Html.Encode(Model.MetaDescription) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"twitter:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"twitter:url\" content=\"" + Request.Url.AbsoluteUri + "\" />");
+    }
+    var storeId = EngineContext.Current.Resolve<IStoreContext>().CurrentStore.Id;
+    var alternativeProductPageLayout = EngineContext.Current.Resolve<ISettingService>().GetSettingByKey("allurethemesettings.alternativeproductpagelayout", false, storeId, true);
+    var alternaticeProductPageLayoutCss = String.Empty;
+    if (alternativeProductPageLayout)
+    {
+        alternaticeProductPageLayoutCss = "product-page-alternative-layout";
+    }
+}
+<!--product breadcrumb-->
+@Html.Partial("_ProductBreadcrumb", Model.Breadcrumb)
+
+<div class="product-page-wrapper" itemscope itemtype="http://schema.org/Product">
+    <div class="product-name">
+        <h1 itemprop="name">
+            @Model.Name
+        </h1>
+        @Html.Widget("productname_bottom", Model.Id)
+    </div>
+    <div class="page product-details-page @alternaticeProductPageLayoutCss">
+        <div class="page-body">
+            @Html.Widget("productdetails_top", Model.Id)
+            @using (Html.BeginRouteForm("Product", new { SeName = Model.SeName }, FormMethod.Post, new { id = "product-details-form" }))
+            {
+                <div data-productid="@Model.Id">
+                    <div class="product-essential">
+
+                        @{
+                            var picturesInTabHtml = Html.Widget("product_pictures_in_tabs", Model.Id);
+
+                            if (!MvcHtmlString.IsNullOrEmpty(picturesInTabHtml) && !alternativeProductPageLayout)
+                            {
+                                @picturesInTabHtml
+                            }
+                            else
+                            {
+                                var cloudZoom = Html.Widget("sevenspikes_cloud_zoom");
+                                if (!MvcHtmlString.IsNullOrEmpty(cloudZoom))
+                                {
+                                    @cloudZoom
+                                }
+                                else
+                                {
+                                    @Html.Partial("_ProductDetailsPictures", Model)
+                                }
+                            }
+                        }
+
+                        <div class="overview">
+                            @if (!String.IsNullOrEmpty(Model.ShortDescription))
+                            {
+                                <div class="short-description">
+                                    @Html.Raw(Model.ShortDescription)
+                                </div>
+                            }
+                            <div class="buttons">
+                                @Html.Widget("productdetails_inside_overview_buttons_before", Model.Id)
+                                @Html.Partial("_CompareProductsButton", Model)
+                                @Html.Partial("_ProductEmailAFriendButton", Model)
+                                @Html.Widget("productdetails_inside_overview_buttons_after", Model.Id)
+                            </div>
+                            @Html.Widget("productdetails_overview_top", Model.Id)
+                            <!--product manufacturers-->
+                            @Html.Partial("_ProductManufacturers", Model.ProductManufacturers)
+                            <!--product reviews-->
+                            @Html.Partial("_ProductReviewOverview", Model.ProductReviewOverview)
+                            @Html.Partial("_ShareButton", Model)
+                            @Html.Widget("productdetails_overview_bottom", Model.Id)
+                        </div>
+                        @if (!String.IsNullOrEmpty(Model.FullDescription))
+                        {
+                            <div class="full-description" itemprop="description">
+                                @Html.Raw(Model.FullDescription)
+                            </div>
+                        }
+                    </div>
+                    @if (alternativeProductPageLayout)
+                    {
+                        @Html.Widget("product_pictures_in_tabs", Model.Id)
+                    }
+                    @Html.Widget("productdetails_before_collateral", Model.Id)
+                    <div class="product-collateral">
+                        <!--associated products-->
+                        <div class="product-variant-list">
+                            @foreach (var variant in Model.AssociatedProducts)
+                            {
+                                <div class="product-variant-line" data-productid="@variant.Id">
+                                    @if (!String.IsNullOrWhiteSpace(variant.DefaultPictureModel.ImageUrl))
+                                    {
+                                        <div class="variant-picture">
+                                            <img alt="@variant.DefaultPictureModel.AlternateText" src="@variant.DefaultPictureModel.ImageUrl"
+                                                 title="@variant.DefaultPictureModel.Title" id="main-product-img-@variant.Id" />
+                                        </div>
+                                    }
+                                    <div class="variant-overview">
+                                        @if (!String.IsNullOrWhiteSpace(variant.Name))
+                                        {
+                                            <div class="variant-name">
+                                                @variant.Name
+                                            </div>
+                                        }
+                                        @if (!String.IsNullOrWhiteSpace(variant.ShortDescription))
+                                        {
+                                            <div class="variant-description">
+                                                @Html.Raw(variant.ShortDescription)
+                                            </div>
+                                        }
+                                        @Html.Partial("_DownloadSample", variant)
+                                        @Html.Partial("_ProductTierPrices", variant.TierPrices)
+                                        @{
+                                        var dataDictAttributes = new ViewDataDictionary();
+                                        dataDictAttributes.TemplateInfo.HtmlFieldPrefix = string.Format("attributes_{0}", variant.Id);
+                                        @Html.Partial("_ProductAttributes", variant.ProductAttributes, dataDictAttributes)
+                                        }
+                                        <!--availability-->
+                                        @Html.Partial("_Availability", variant)
+                                        <!--SKU, MAN, GTIN, vendor-->
+                                        @Html.Partial("_SKU_Man_GTIN_Ven", variant)
+                                        <!--delivery-->
+                                        @Html.Partial("_DeliveryInfo", variant)
+                                        @{
+                                        var dataDictGiftCard = new ViewDataDictionary();
+                                        dataDictGiftCard.TemplateInfo.HtmlFieldPrefix = string.Format("giftcard_{0}", variant.Id);
+                                        @Html.Partial("_GiftCardInfo", variant.GiftCard, dataDictGiftCard)
+                                        }
+                                        @{
+                                        var dataDictRental = new ViewDataDictionary();
+                                        dataDictRental.TemplateInfo.HtmlFieldPrefix = string.Format("rental_{0}", variant.Id);
+                                        @Html.Partial("_RentalInfo", variant, dataDictRental)
+                                        }
+                                        @{
+                                        var dataDictPrice = new ViewDataDictionary();
+                                        dataDictPrice.TemplateInfo.HtmlFieldPrefix = string.Format("price_{0}", variant.Id);
+                                        @Html.Partial("_ProductPrice", variant.ProductPrice, dataDictPrice)
+                                        }
+                                        @{
+                                        var dataDictAddToCart = new ViewDataDictionary();
+                                        dataDictAddToCart.TemplateInfo.HtmlFieldPrefix = string.Format("addtocart_{0}", variant.Id);
+                                        @Html.Partial("_AddToCart", variant.AddToCart, dataDictAddToCart)
+                                        }
+                                        <!--wishlist-->
+                                        @{
+                                        var dataDictAddToWishlist = new ViewDataDictionary();
+                                        dataDictAddToWishlist.TemplateInfo.HtmlFieldPrefix = string.Format("addtocart_{0}", variant.Id);
+                                        @Html.Partial("_AddToWishlist", variant.AddToCart, dataDictAddToWishlist)
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.AssociatedProducts.Count == 0)
+                            {
+                                <div class="no-associated-products">
+                                    @T("Products.NoAssociatedProducts")
+                                </div>
+                            }
+                        </div>
+                        @Html.Partial("_ProductSpecifications", Model.ProductSpecifications)
+                        @Html.Partial("_ProductTags", Model.ProductTags)
+                        @Html.Action("RelatedProducts", "Product", new { productId = Model.Id })
+                    </div>
+                </div>
+            }
+            @Html.Widget("productdetails_bottom", Model.Id)
+        </div>
+    </div>
+</div>

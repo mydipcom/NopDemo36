@@ -1,0 +1,232 @@
+﻿/*=====================================================
+    
+    TABLETS PORTRAIT & SMARTPHONES LANDSCAPE
+
+=====================================================*/
+
+@media all and (min-width: 481px) {
+
+/* HEADER */
+
+.ui-autocomplete.ui-menu.ui-widget.ui-widget-content {
+	/*width: 336px !important;*/ /*txtfield + button*/
+}
+
+.eu-cookie-bar-notification {
+    width: 450px;
+    max-width: 95%;
+    margin-left: -225px;
+}
+
+/* FOOTER */
+
+    .footer-middle {
+        font-size: 0;
+    }
+        .footer-middle .footer-block {
+            float: left;
+            width: 50%;
+        }
+
+    .newsletter-email input[type="text"] {
+	    width: 300px;
+    }
+
+/* CATEGORY PAGE & GRIDS */
+
+.item-grid {
+    font-size: 0;
+}
+.item-box {
+    float: left;
+	width: 48%; /*two per row*/
+	margin: 0 1% 2%;
+    max-width: none;
+}
+
+/* product in list */
+
+    .product-list .picture {
+        width: 200px;
+        float: left;
+    }
+    .product-list .details {
+        margin-left: 220px;
+    }
+
+/* PRODUCT PAGE */
+
+    .product-variant-line {
+        position: relative;
+        padding: 0 5px;
+        min-height: 200px;
+    }
+        .product-variant-line:before {
+            content: " ";
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 5px;
+            background: #e87772;
+        }
+    .variant-picture {
+        float:left;
+        margin: 0;
+    }
+    .variant-picture + .variant-overview {
+        text-align: left;
+        margin-left: 210px
+    }
+    .product-variant-list .variant-overview>div{
+        margin:10px 0;
+    }
+/* QUICK TABS */
+
+    .ui-tabs .ui-tabs-nav li {
+	    display: inline-block;
+    }
+        .ui-tabs .ui-tabs-nav li a {
+            display: block;
+        }
+
+/* PASSWORD PROTECTION */
+.enter-password-form input[type="password"] {
+	width: 300px !important;
+}
+
+/* REGISTRATION, LOGIN, MY ACCOUNT */
+
+    .registration-page .date-of-birth select,
+    .account-page .date-of-birth select {
+	    width: 110px;
+    }
+    .block-account-navigation {
+        width: 360px !important;
+        float: none !important;
+        margin: 0 auto 20px !important;
+    }
+
+    .address-item, .order-item {
+        margin: 0 .5% 1%;
+        float: left;
+    }
+
+/* SHOPPING CART & CHECKOUT */
+
+.order-review-data {
+	display: table;
+	width: 100%;
+	margin: 0 0 30px;
+}
+.order-review-data ul {
+    float: left;
+    margin: 0 2% 30px 0;
+    width: 49%;
+    max-width: 350px;
+}
+    .order-review-data ul:last-child {
+        margin-right: 0;
+    }
+.order-details-area td {
+	float: none;
+	width: auto;
+}
+
+.shipment-details-page .shipment-overview > ul {
+    float: left;
+    width: 48%;
+    margin: 0 1% !important;
+}
+
+/* BLOG & NEWS */
+
+    .news-items {
+        font-size: 0;
+    }
+    .news-items .news-item {
+        display: inline-block;
+        width: 48%;
+        margin: 0 1% 2%;
+        max-width: 320px;
+    }
+
+/* TOPICS */
+
+    .topic-block-title h2:before {
+        right: 75%;
+    }
+    .topic-block-title h2:after {
+        left: 75%;
+    }
+
+}
+
+@media all and (min-width: 480px) and (max-width: 768px) {
+
+    .side-2 {
+        overflow: hidden;
+    }
+    .side-2 .block {
+        float: left;
+        width: 48%;
+        margin: 0 1% 2%;
+    }
+        .side-2 .block:nth-of-type(2n+1) {
+            clear: both;
+        }
+
+/* CATEGORY PAGE & GRIDS */
+
+    .item-box:nth-child(2n+1) {
+        clear: both;
+    }
+
+/* ACCOUNT PAGE */
+
+    .address-item, .order-item {
+        width: 49%;
+    }
+        .address-item:nth-child(2n+1),
+        .order-item:nth-child(2n+1) {
+            clear: both;
+        }
+
+/* NEWS */
+
+    .news-list-homepage .title strong:before {
+        right: 75%;
+    }
+    .news-list-homepage .title strong:after {
+        left: 75%;
+    }
+    
+}
+
+@media all and (min-width: 640px) {
+
+    .comment-info {
+	    float: left;
+	    margin: 0;
+    }
+    .comment-info + .comment-content {
+	    margin: 0 0 0 135px;
+    }
+    .comment-content {
+        position: relative;
+        text-align: left;
+    }
+    .comment-time {
+        position: absolute;
+        top: 8px;
+        right: 0;
+    }
+    .blog-comment .comment-time {
+        position: static;
+        margin: 0 0 15px;
+    }
+    .comment-title {
+        padding: 5px 170px 5px 0;
+    }
+
+}

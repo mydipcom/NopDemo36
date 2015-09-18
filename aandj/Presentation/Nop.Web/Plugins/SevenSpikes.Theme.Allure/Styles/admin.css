@@ -1,0 +1,113 @@
+﻿.theme-color input.multi-store-override-option,
+.theme-texture input.multi-store-override-option {
+    display: inline-block;
+}
+.theme-color .adminData,
+.theme-texture .adminData {
+    position: relative;
+}
+.theme-color .upload-image-overlay,
+.theme-texture .upload-image-overlay {
+    position: absolute !important;
+}
+.theme-color .upload-image-overlay:before,
+.theme-texture .upload-image-overlay:before {
+    display: none !important;
+}
+.theme-color .upload-image-overlay:hover,
+.theme-texture .upload-image-overlay:hover {
+    cursor: auto;
+}
+.theme-color .adminData div,
+.theme-texture .adminData div {
+    float: left;
+    margin: 0 5px;
+    font-size: 0;
+    position: relative;
+    cursor: pointer;
+}
+.theme-color .adminData div:before {
+    content: " ";
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    border-radius: 4px;
+    -webkit-transition: all .15s ease-in-out;
+    -moz-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+}
+.theme-color .adminData div.active:before,
+.theme-color .adminData div:hover:before {
+    width: 29px;
+    height: 29px;
+    top: 5px;
+    left: 5px;
+    border: 3px solid rgba(0,0,0,0.4);
+}
+
+.theme-color input,
+.theme-texture input {
+    display: none;
+}
+
+.theme-color .adminData label,
+.theme-texture .adminData label {
+    display: block;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 0;
+}
+.theme-color .adminData label[for=_Preset_Peach] {
+    background-color: #e87772;
+}
+.theme-color .adminData label[for=_Preset_Orange] {
+    background-color: #f3a078;
+}
+.theme-color .adminData label[for=_Preset_Olive] {
+    background-color: #a6b773;
+}
+.theme-color .adminData label[for=_Preset_Sky] {
+    background-color: #87badd;
+}
+.theme-color .adminData label[for=_Preset_Wood] {
+    background-color: #b19489;
+}
+.theme-color .adminData label[for=_Preset_Violet] {
+    background-color: #a9a1c6;
+}
+.theme-texture .adminData label {
+    border: 1px solid #999;
+    width: 43px;
+    height: 43px;
+}
+    .theme-texture .adminData div:before {
+        content: " ";
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        top: 50%;
+        left: 50%;
+        margin: -6px 0 0 -6px;
+        border-radius: 3px;
+        opacity: 0;
+        background: #666;
+        -webkit-transition: all .15s ease-in-out;
+        -moz-transition: all .15s ease-in-out;
+        transition: all .15s ease-in-out;
+    }
+        .theme-texture .adminData div.active:before {
+            opacity: 1;
+        }
+.theme-texture .adminData label[for=_Texture_Texture_1] {
+    background: #fff url('images/texture_1.png') repeat center;
+}
+.theme-texture .adminData label[for=_Texture_Texture_2] {
+    background: #fff url('images/texture_2.jpg') repeat center;
+}
+.theme-texture .adminData label[for=_Texture_Texture_3] {
+    background: #fff url('images/texture_3.jpg') repeat center;
+}

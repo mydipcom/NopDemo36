@@ -1,0 +1,113 @@
+.alipay-methods {
+    overflow:hidden;
+}
+.alipay-methods li {
+    float: left;
+    margin: 6px 0;
+    margin-right: 10px;
+    width: 165px;
+    border: 1px solid #DDDDDD;
+    padding: 5px 1px 5px 5px;
+    cursor: pointer;
+    background: #fff;
+    position:relative;
+    list-style:none;
+}
+.alipay-methods li:hover,
+.alipay-methods li.selected {
+    border: 2px solid #e4393c;
+    padding: 4px 0 4px 4px;
+}
+
+.alipay-methods li input{
+    vertical-align: middle;
+    cursor: pointer;
+    position:relative;
+    top:10px;
+    float:left;
+    margin-left:5px;
+}
+
+.alipay-methods .icon{
+    background-image: url(images/bankicon.png);
+    display:inline-block;
+    height: 30px;
+    width:120px;
+    background-repeat: no-repeat;
+	cursor: pointer;
+}
+.alipay-methods .icon:hover, .alipay-methods .icon.selected
+{
+
+}
+
+
+.alipay-methods .alipay {
+    background-image: url(images/Alipay125.png);
+}
+.ICBC{    
+    background-position: 0 -40px;
+}
+.CMB {
+    background-position: 0 -80px;
+}
+.CCB{
+    background-position: 0 -320px;
+}
+.BOC{
+    background-position: 0 -520px;
+}
+.ABC{
+    background-position: 0 -480px;
+}
+.COMM{
+    background-position: 0 -600px;
+}
+.PSBC {
+    background-position: 0 -400px;
+}
+.CEB {
+    background-position: 0 -440px;
+}
+.SPDB {
+    background-position: 0 -360px;
+}
+.GDB {
+    background-position: 0 -280px;
+}
+.CITIC {
+    background-position: 0 -200px;
+}
+.CIB {
+    background-position: 0 -3365px;
+}
+.SDB {
+    background-position: 0 -240px;
+}
+.CMBC {
+    background-position: 0 -120px;
+}
+.HZCB {
+    background-position: 0 -760px;
+}
+.SHBANK {
+    background-position: 0 -840px;
+}
+.BJRCB {
+    background-position: 0 -2640px;
+}
+.SPABANK {
+    background-position: 0 -1880px;
+}
+.FDB {
+    background-position: 0 -1320px;
+}
+.NBBANK {
+    background-position: 0 -1240px;
+}
+.BJBANK {
+    background-position: 0 -3240px;
+}
+.WZCB {
+    background-position: 0 -1720px;
+}

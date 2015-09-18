@@ -1,0 +1,535 @@
+/*
+* Copyright 2014 Seven Spikes Ltd. All rights reserved. (http://www.nop-templates.com)
+* http://www.nop-templates.com/t/licensinginfo
+*/
+
+
+/*** TITLE & CONTAINERS ***/
+
+
+.nop-jcarousel {
+	position: relative;
+    margin: 20px 0;
+}
+.nop-jcarousel .carousel-title {
+    text-align: center;
+}
+.nop-jcarousel .carousel-title span {
+    display: block;
+	font-weight: normal;
+    font-size: 26px;
+    color: #555;
+}
+
+.nop-jcarousel .jcarousel-container {
+    position: static !important;
+    padding-top: 62px;
+}
+
+.nop-jcarousel .jcarousel-clip {
+    overflow: hidden;
+}
+.nop-jcarousel .jcarousel-list-horizontal {
+    padding: 5px 0 !important;
+}
+    .manufacturers-carousel .nop-jcarousel .jcarousel-list-horizontal {
+        background: #fff;
+    }
+
+
+
+/*** NAVIGATION ***/
+
+
+
+.nop-jcarousel .jcarousel-prev, 
+.nop-jcarousel .jcarousel-next {
+    position: absolute;
+    top: 40px;
+    width: 48px;
+    height: 48px;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    border-radius: 24px;
+    cursor: pointer;
+    border: 2px dotted #fff;
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    transition: all .2s ease;
+}
+.nop-jcarousel .jcarousel-prev {
+    left: 50%;
+    margin-left: -52px;
+    background-image: url('images/prev-horizontal.png');
+    background-position: 15px center;
+}
+.nop-jcarousel .jcarousel-next {
+    right: 50%;
+    margin-right: -52px;
+    background-image: url('images/next-horizontal.png');
+    background-position: 19px center;
+}
+.nop-jcarousel .jcarousel-prev:hover,
+.nop-jcarousel .jcarousel-next:hover {
+	border-color: #444;
+}
+
+.nop-jcarousel .jcarousel-next-disabled,
+.nop-jcarousel .jcarousel-next-disabled:hover,
+.nop-jcarousel .jcarousel-prev-disabled,
+.nop-jcarousel .jcarousel-prev-disabled:hover {
+    opacity: 0.3;
+    cursor: default;
+    border: 2px solid #fff;
+}
+
+
+/*** JCAROUSEL ITEM BOX ***/
+
+
+
+.nop-jcarousel .jcarousel-item-horizontal {
+    text-align: center;
+    font-size: 0;
+    margin: 0 5px;
+}
+
+.nop-jcarousel .item-holder {
+    max-width: 335px;
+    margin: 0 auto;
+}
+
+.nop-jcarousel .item-picture img {
+    max-width: 100%;
+}
+
+    /* products */
+
+        .products-carousel .item-holder {
+	        position: relative;
+            -webkit-transition: box-shadow .2s ease-in-out;
+            -moz-transition: box-shadow .2s ease-in-out;
+            transition: box-shadow .2s ease-in-out;
+        }
+            .products-carousel .item-holder:hover {
+            }
+        .products-carousel .item-picture {
+	        position: relative;
+            overflow: hidden;
+        }
+        .products-carousel .item-picture a {
+            position: relative;
+	        display: block;
+	        width: 100%;
+	        height: 100%;
+        }
+            .products-carousel .item-picture a:after {
+                content: " ";
+                display: block;
+                padding-top: 100%;
+            }
+            .products-carousel .item-picture img {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+            }
+    .hover-item-info {
+	    position: absolute;
+        top: 0;
+        right: 0;
+	    left: 0;
+        background: rgba(255,255,255,.6);
+        z-index: -1;
+        opacity: 0;
+        -webkit-transition: all .15s ease-in-out;
+        -moz-transition: all .15s ease-in-out;
+        transition: all .15s ease-in-out;
+    }
+        .products-carousel .hover-item-info:before {
+            content: " ";
+            display: block;
+            padding-top: 100%;
+        }
+    .hover-item-info .short-description {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        overflow: hidden;
+        padding: 0 0 15px;
+        border-bottom: 1px solid #a9a9a9;
+        text-align: justify;
+        color: #333;
+        font-size: 14px;
+        line-height: 1.2;
+    }
+        .hover-item-info .short-description p {
+            height: 65px;
+            overflow: hidden;
+        }
+        .products-carousel .item-info {
+            position: relative;
+            border: 1px solid #ddd;
+            background: #fff;
+            padding: 2px 9px 0;
+        }
+            .products-carousel .item-info:before {
+                content: " ";
+                position: absolute;
+                top: -1px;
+                left: -1px;
+                right: -1px;
+                background: #e87772;
+                height: 3px;
+            }
+        .products-carousel .item-info .jcarousel-product-title {
+            height: 43px;
+            border-bottom: 1px solid #ddd;
+            overflow: hidden;
+        }
+        .products-carousel .item-info .jcarousel-product-name {
+	        display: block;
+            color: #555;
+            font-size: 16px;
+            line-height: 2.65;
+        }
+        .products-carousel .item-info .prices {
+            height: 43px;
+            font-size: 0;
+            -webkit-transform: translateZ(0);
+        }
+             .products-carousel .item-info .prices:before {
+                content: " ";
+                display: inline-block;
+                vertical-align: middle;
+                height: 100%;
+            }
+        .product-rating-box {
+            display: inline-block;
+            margin: 0 0 5px;
+        }
+            .jcarousel-item-vertical .product-rating-box{
+                margin:0;
+            }
+        .product-rating-box .rating {
+            background: rgba(0, 0, 0, 0) url("images/rating1.png") repeat-x scroll 0 0;
+            height: 16px;
+            width: 85px;
+        }
+        .product-rating-box .rating div {
+            background: rgba(0, 0, 0, 0) url("images/rating2.png") repeat-x scroll 0 0;
+            height: 16px;
+        }
+        .products-carousel .item-info .prices > * {
+            display: inline-block;
+            vertical-align: middle;   
+            margin: 0 2px; 
+        }
+        .products-carousel .item-info .old-price {
+	        color: #555;
+	        text-decoration: line-through;
+            font-size: 14px;
+        }
+        .products-carousel .item-info .actual-price {
+	        font-size: 18px;
+	        color: #e87772;
+            font-weight: 700;
+        }
+
+        .products-carousel .product-rating-box{
+            padding: 13px 0 0;
+        }
+        .products-carousel .rating {
+            display: inline-block;
+            height: 16px;
+            width: 85px;
+            background: url(images/rating1.png) 0 0 repeat-x;
+        }
+        .products-carousel .rating div {
+            height: 16px;
+            background: url(images/rating2.png) 0 0 repeat-x;
+        }
+        .products-carousel .item-buttons {
+            position: absolute;
+            bottom: 30%;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+        .products-carousel .button {
+            display: inline-block;
+	        border: 2px solid #e87772;
+	        background: #fff;
+            color: #e87772;
+            text-transform: uppercase;
+            font-size: 14px;
+            padding: 8px 11px;
+            margin: 0 7px;
+            -webkit-transition: all .15s ease-in-out;
+            -moz-transition: all .15s ease-in-out;
+            transition: all .15s ease-in-out;
+        }
+            .products-carousel .button:hover {
+                border: 2px solid #fff;
+	            background: #e87772;
+                color: #fff;
+            }
+
+        .products-carousel .product-ribbon {
+            -webkit-transform: translateZ(0); /* 1px movement on hover fix */
+        }
+
+    /* manufacturers */
+
+        .manufacturers-carousel {
+            padding-bottom: 25px;
+        }
+        .manufacturers-carousel .item-picture a {
+            display: block;
+        }
+        .manufacturers-carousel .item-info {
+            display: none;
+        }
+
+    /* categories */
+
+        .categories-carousel .jcarousel-item {
+            
+        }
+        .categories-carousel .item-holder {
+            position: relative;
+            border: 5px solid #fff;
+            background: #fff;
+            border-radius: 100%;
+            overflow: hidden;
+            -webkit-mask-image: url(images/mask.png);
+            -webkit-mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-transform: translateZ(0) scale(1.0, 1.0); /* fixes the bug of the 1px moving product images when hover on category */
+        }
+        .categories-carousel .item-info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            border-radius: 100%;
+            overflow: hidden;
+        }
+       .categories-carousel .item-holder .jcarousel-product-title {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 17.7%;
+            z-index: 2;
+            margin-bottom: -25px;
+            height: 50px;
+            background: rgba(255,255,255,.7);
+            font-weight: 400;
+            border: 0;
+            -webkit-transition: all .1s ease-in-out;
+            -moz-transition: all .1s ease-in-out;
+            transition: all .1s ease-in-out;
+        }
+        .categories-carousel .item-holder .jcarousel-product-title a {
+            display: block;
+            color: #222;
+            text-shadow: 1px 1px rgba(255,255,255,.2);
+            line-height: 1.2;
+            font-size: 24px;
+            padding: 11px;
+        }
+            .categories-carousel .item-holder:hover .jcarousel-product-title {
+                bottom: 50%;
+                background: rgba(255,255,255,.9);
+            }
+        .categories-carousel .item-holder .item-picture,
+        .categories-carousel .item-holder .item-picture a {
+            border-radius: 100%;
+            overflow: hidden;
+            display: block;
+        }
+        .categories-carousel .item-holder .item-picture a:before {
+            content: " ";
+            display: block;
+            padding-top: 100%;
+        }
+        .categories-carousel .item-holder .item-picture img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            border-radius: 100%;
+            -webkit-transition: all .1s ease-in-out;
+            -moz-transition: all .1s ease-in-out;
+            transition: all .1s ease-in-out;
+            -webkit-transform: translateZ(0) scale(1.0, 1.0);
+        }
+            .categories-carousel .item-holder:hover img {
+                opacity: .8;
+            }
+
+/*** VERTICAL TITLE & CONTAINERS ***/
+
+    .nop-jcarousel.vertical-holder {
+        margin: 0;
+    }
+
+    .nop-jcarousel .carousel-title.vertical {
+        display: block;
+    }
+    .nop-jcarousel .carousel-title.vertical span {
+        font-size: 20px;
+        cursor: pointer;
+        color: #fff;
+        background: #e87772;
+        padding: 8px;
+        display: block;
+        font-weight: normal;
+        width: auto;
+    }
+    .nop-jcarousel .jcarousel-container-vertical {
+        padding-top: 65px !important;
+    }
+    .nop-jcarousel .jcarousel-item-vertical {
+        width: 230px;
+        margin: 0 auto;
+        float: none !important;
+    }
+
+        /* nav */
+
+            .nop-jcarousel .jcarousel-prev-vertical,
+            .nop-jcarousel .jcarousel-next-vertical {
+                -webkit-transform: rotate(90deg);
+                -moz-transform: rotate(90deg);
+                -o-transform: rotate(90deg);
+                transform: rotate(90deg);
+                top: 48px;
+            }
+
+        /* products */
+
+            .products-carousel .jcarousel-item-vertical {
+	            height: 350px !important;
+            }
+
+        /* categories */
+
+            .categories-carousel .jcarousel-item-vertical {
+                height: 240px !important;
+            }        
+            
+            .categories-carousel .jcarousel-item-vertical .jcarousel-product-title a {
+                line-height: 22px;
+                font-size: 18px;
+                padding: 14px;
+            }    
+
+        /* manufacturers */
+
+            .manufacturers-carousel.block {
+                padding: 0 !important;
+            }
+            .manufacturers-carousel .jcarousel-item-vertical {
+                height: 125px !important;
+            }
+                .manufacturers-carousel .jcarousel-item-vertical .item-holder {
+                    height: 120px;
+                    overflow: hidden;
+                }
+
+
+
+
+/*** ADDITIONAL STYLES ***/
+
+
+/* If the wrap is set to circular and the carousel skin can display more items than there are, the carousel adds additional <li> elements to fill the
+empty spaces. This class is added only for those empty elements. They should not be visible. */
+
+.nop-jcarousel .jcarousel-item-placeholder-horizontal {
+    visibility: hidden;
+}
+
+@media all and (max-width: 1000px) {
+
+    .products-carousel .item-info {
+        padding: 2px 9px 12px;
+    }
+
+/*** VERTICAL TITLE & CONTAINERS ***/
+
+    /* products */
+
+        .products-carousel .jcarousel-item-vertical {
+	        height: 378px !important;
+        }
+
+}
+
+@media all and (min-width: 769px) {
+
+/* carousel title */
+
+    .nop-jcarousel .carousel-title {
+        display: table;
+        width: 100%;
+    }
+        .nop-jcarousel .carousel-title:before,  
+        .nop-jcarousel .carousel-title:after {
+            content: " ";
+            display: table-cell;
+            width: 30%;
+            background: url(images/title-lines.png) repeat-x left center;
+        }
+            .nop-jcarousel .carousel-title span {
+                display: table-cell;
+                width: 40%;
+                padding: 0 25px;
+            }
+
+}
+
+@media all and (min-width: 1001px) {
+
+    .nop-jcarousel .jcarousel-container {
+        padding-top: 15px;
+    }
+
+    .nop-jcarousel .jcarousel-prev-horizontal, 
+    .nop-jcarousel .jcarousel-next-horizontal {
+        margin: 0;
+        top: 50%;
+        width: 38px;
+        height: 38px;
+    }
+    .nop-jcarousel .jcarousel-prev-horizontal {
+        left: -46px;
+        right: auto;
+        background-position: 11px center;
+    }
+    .nop-jcarousel .jcarousel-next-horizontal {
+        right: -46px;
+        left: auto;
+        background-position: 14px center;
+    }   
+
+    /* products */
+
+    .products-carousel .item-holder:hover .hover-item-info {
+        z-index: 2;
+        opacity: 1;        
+    }
+
+        .products-carousel .item-info .button{            
+            display: none;
+        }
+
+}

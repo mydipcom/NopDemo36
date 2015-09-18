@@ -1,0 +1,100 @@
+@media all and (min-width: 240px) and (max-width: 1000px) {
+
+    .search-box input.search-box-text,
+    .search-box .search-box-button,
+    .responsive-nav-wrapper .menu-title,
+    .header-menu > ul li > .with-subcategories {
+	    float: right;
+    }
+    .responsive-nav-wrapper .personal-button {
+	    float: left;
+    }
+    .close-menu span,
+    .header-menu .back-button span {
+	    text-align: left;
+        background: url(../img/rtl-mobile-nav-close.png) no-repeat 93.5% center;
+    }
+
+    .page-title h1{
+	    margin-right: -2.6%;
+	    margin-left: 0;
+    }
+
+/* HEADER LINKS */
+
+    .header-links-wrapper{
+	    right: 0;
+	    left: 0;
+    }
+
+/* SEARCH */
+
+    .search-box{
+	    right: 0;
+	    left: auto;
+    }
+
+/* RESPONSIVE MENU */
+
+    .overlayOffCanvas{
+	    right: 0;
+	    left: auto;
+    }
+    .justAFixingDivBefore,
+    .header-menu {
+	    right: 0;
+	    left: auto;
+	    text-align: right;
+        -webkit-transform: translate(320px);
+        -ms-transform: translate(320px);
+        transform: translate(320px);
+    }
+    .plus-button{
+	    float: left;
+	    border-right: 1px solid #e6e6e6;
+	    border-left: 0;
+        background: url(../img/rtl-mobile-nav-item-open.png) no-repeat center;
+    }
+    .header-menu .sublist-wrap {
+	    right: 0;
+	    left: auto;
+        -webkit-transform: translate(320px);
+        -ms-transform: translate(320px);
+        transform: translate(320px);
+    }
+        .move-right {
+            -webkit-transform: translate(0) !important;
+            -ms-transform: translate(0) !important;
+            transform: translate(0) !important;        
+        }
+
+/** correct menu movement **/
+.notAndroid23 .justAFixingDivBefore, 
+.notAndroid23 .header-menu {
+    -webkit-transform: translate(320px);
+    -ms-transform: translate(320px);
+    transform: translate(320px);
+}
+.notAndroid23 .header-menu .sublist-wrap {
+    -webkit-transform: translate(320px);
+    -ms-transform: translate(320px);
+    transform: translate(320px);
+}
+
+
+
+/* CATERGORY PAGE & GRIDS */
+
+    .product-selectors{
+	    margin-right: -2.6%;
+	    margin-left: 0;
+    }
+
+/* PRODUCT PAGE */
+
+    .center-1 > .product-name{
+	    margin-right: -2.6%;
+	    margin-left: 0;
+    }
+
+}

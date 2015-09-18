@@ -1,0 +1,71 @@
+/*
+* Copyright 2014 Seven Spikes Ltd. All rights reserved. (http://www.nop-templates.com)
+* http://www.nop-templates.com/t/licensinginfo
+*/
+
+.jcarousel-skin-thumbs {
+
+}
+.jcarousel-skin-thumbs .jcarousel-direction-rtl {
+	direction: rtl;
+}
+
+.jcarousel-skin-thumbs .jcarousel-container-vertical {
+
+}
+
+.jcarousel-skin-thumbs .jcarousel-clip {
+    overflow: hidden;
+    margin: 0 38px;
+}
+
+.jcarousel-skin-thumbs .jcarousel-clip-vertical {
+}
+
+.jcarousel-skin-thumbs .jcarousel-item {
+    margin: 0 5px;
+}
+    .gallery .picture-thumbs .jcarousel-item a {
+        margin: 0 !important;
+        width: 95px;
+        height: 95px;
+    }
+
+.jcarousel-skin-thumbs .jcarousel-item-vertical {
+    margin-bottom: 10px;
+}
+
+/**
+ *  Vertical Buttons
+ */
+
+.jcarousel-skin-thumbs .jcarousel-next-horizontal,
+.jcarousel-skin-thumbs .jcarousel-prev-horizontal {
+    position: absolute;
+    top: 50%;
+    margin-top: -20px;
+    width: 36px;
+    height: 36px;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    border-radius: 24px;
+    cursor: pointer;
+    border: 2px dotted #fff;
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    transition: all .2s ease;
+}
+.jcarousel-skin-thumbs .jcarousel-prev-horizontal {
+    left: 0;
+    background-image: url('images/prev-horizontal.png');
+    background-position: 9px center;
+}
+.jcarousel-skin-thumbs .jcarousel-next-horizontal {
+    right: 0;
+    background-image: url('images/next-horizontal.png');
+    background-position: 13px center;
+}
+.jcarousel-skin-thumbs .jcarousel-prev-horizontal:hover,
+.jcarousel-skin-thumbs .jcarousel-next-horizontal:hover {
+	border-color: #444;
+}

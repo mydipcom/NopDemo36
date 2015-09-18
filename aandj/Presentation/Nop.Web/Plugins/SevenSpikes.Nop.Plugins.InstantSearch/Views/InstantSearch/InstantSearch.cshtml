@@ -1,0 +1,136 @@
+﻿@** Copyright 2014 Seven Spikes Ltd. All rights reserved. (http://www.nop-templates.com)
+* http://www.nop-templates.com/t/licensinginfo
+*@
+
+@using Nop.Core;
+@using Nop.Core.Infrastructure;
+
+@model SevenSpikes.Nop.Plugins.InstantSearch.Models.InstantSearchModel
+
+@{
+    var instantSearchUrl = Url.RouteUrl("InstantSearch");
+
+    /*Kendo UI specific css files.
+
+    kendo.common.min.css - it contains common kendo styles
+    kendo.default.min.css - it contains deafult kendo theme specific styles. You can use the kendo theme builder for new themes - http://demos.kendoui.com/themebuilder/index.html
+
+    */
+    
+    Html.AddCssFileParts("~/Plugins/SevenSpikes.Nop.Plugins.InstantSearch/Themes/" + Model.Theme + "/Content/InstantSearch.css");
+
+    var supportRtl = EngineContext.Current.Resolve<IWorkContext>().WorkingLanguage.Rtl;
+    if (supportRtl)
+    {
+        Html.AddCssFileParts("~/Plugins/SevenSpikes.Nop.Plugins.InstantSearch/Themes/" + Model.Theme + "/Content/InstantSearch.rtl.css");
+    }
+
+    Html.AddScriptParts("~/Scripts/kendo/2014.1.318/kendo.core.min.js");
+    Html.AddScriptParts("~/Scripts/kendo/2014.1.318/kendo.data.min.js");
+    Html.AddScriptParts("~/Scripts/kendo/2014.1.318/kendo.popup.min.js");
+    Html.AddScriptParts("~/Scripts/kendo/2014.1.318/kendo.list.min.js");
+    Html.AddScriptParts("~/Scripts/kendo/2014.1.318/kendo.autocomplete.min.js");
+}
+
+@if(Model.TopLevelCategories.Count > 0)
+{ 
+    <script type="text/javascript">
+        var searchBox = $(".search-box-text");
+            
+        if(searchBox.length > 0) {
+            $(".search-box-text").addClass("narrow");
+        }
+    </script>
+    @Html.Partial("TopLevelCategoriesDropDown", @Model.TopLevelCategories)
+}
+
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        var autocomplete = $("#small-searchterms").kendoAutoComplete(
+        {
+            highlightFirst: "@Model.HighlightFirstFoundElementToBeSelected" == "True",
+            minLength: @Model.MinKeywordLength,
+            dataTextField: "ProductName",
+            filter: "contains",
+            @* You can change the whole html by modifying the template below without the main div element as it is used in the navigation.
+                   There is NO need to add anchor html elements(<a href..) as the navigation is handled automaticaly when an item is selected.
+                   You can use the following tokens to get the information retuned from the server:
+                   ${ data.ProductPageUrl } - contains the url of the product page i.e /p/7. This property is required for the navigation to work and should not be removed from the template!!!
+                   ${ data.ProductName } - contains the name of the product
+                   ${ data.DefaultPictureUrl } - contains the Url of the default product picture
+                   ${ data.ProductPrice } - contains the price of the product
+                *@
+            template: '<div class="instant-search-item" data-url="${ data.CustomProperties.Url }">' +
+                '<div class="img-block">' +
+                '<img src="${ data.DefaultPictureModel.ImageUrl }" alt="${ data.Name }" title="${ data.Name }" style="border:none">' +
+                '</div>' +
+                '<div class="detail">' +
+                '<div class="title">${ data.Name }</div>' +
+                '<div class="price"># var price = ""; if (data.ProductPrice.Price) { price = data.ProductPrice.Price } # #= price #</div>' +
+
+                @if(Model.ShowSku)
+                {
+                    <text>
+                        '<div class="sku"># var sku = ""; if (data.CustomProperties.Sku != null) { sku = "@T("Products.Sku"): " + data.CustomProperties.Sku } # #= sku #</div>' +
+                    </text>
+                }
+
+                '</div>' +
+                '</div>',
+            dataSource: new kendo.data.DataSource({
+                    serverFiltering: true,
+                    requestStart: function(e) {
+                        $("#small-searchterms").addClass("instant-search-busy");
+                    },
+                    change: function(e) {
+                        $("#small-searchterms").removeClass("instant-search-busy");
+                    },
+                    transport: {
+                        read: "@instantSearchUrl",
+                        parameterMap: function(data) {
+                            return { q: $("#small-searchterms").val(), categoryId: $("#instant-search-categories").val() };
+                        }
+                    }
+                }
+            ),
+            change: function(e) {
+                var selected = $(".k-list").find(".k-state-selected");
+                var url = selected.find('.instant-search-item').attr('data-url');
+                if (typeof url === "undefined") {
+                    // do nothing as the value has probably been changed from the onblur event handler rather than from dropdown selection
+                } else {
+                    // navigate to the searched product
+                    setLocation(url);
+                }
+            },
+            dataBound: function() {
+                $(".k-animation-container").addClass("instantSearch");
+                @if (Model.TopLevelCategories.Count > 0)
+                {
+                    <text>$(".k-animation-container").addClass("resize");</text>
+                }
+            }
+        });
+
+        if ("@Model.HighlightFirstFoundElementToBeSelected" == "False") {
+
+            $("#small-search-box-form").on("keydown", function(e) {
+                if (e.keyCode === 13) {
+                    $(this).submit();
+                }
+            });
+        }
+
+        $("#small-search-box-form").submit(function(event) {
+            var selectedCategory = $("#instant-search-categories").val() || 0;
+            var searchedTerm = $("#small-searchterms").val();
+            if (searchedTerm && searchedTerm != "") {
+
+                window.location.href = "@Url.RouteUrl("HomePage")" + "search?adv=true&cid=" + selectedCategory + "&q=" + encodeURIComponent(searchedTerm) + "&sid=@Model.SearchInProductDescriptions&isc=true";
+            }
+
+            event.preventDefault();
+        });
+    });
+</script>

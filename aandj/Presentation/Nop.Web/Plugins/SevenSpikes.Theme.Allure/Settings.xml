@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <Setting Name="ordersettings.onepagecheckoutenabled">
+    <Value>false</Value>
+  </Setting>
+  <Setting Name="catalogsettings.showproductsfromsubcategories">
+    <Value>true</Value>
+  </Setting>
+  <Setting Name="mediasettings.productthumbpicturesize">
+    <Value>345</Value>
+  </Setting>
+  <Setting Name="mediasettings.productdetailspicturesize">
+    <Value>600</Value>
+  </Setting>
+  <Setting Name="mediasettings.minicartthumbpicturesize">
+    <Value>78</Value>
+  </Setting>
+  <Setting Name="mediasettings.manufacturerthumbpicturesize">
+    <Value>345</Value>
+  </Setting>
+  <Setting Name="mediasettings.categorythumbpicturesize">
+    <Value>370</Value>
+  </Setting>
+  <Setting Name="mediasettings.avatarpicturesize">
+    <Value>90</Value>
+  </Setting>
+  <Setting Name="mediasettings.productthumbpicturesizeonproductdetailspage">
+    <Value>95</Value>
+  </Setting>
+  <Setting Name="mediasettings.associatedproductpicturesize">
+    <Value>250</Value>
+  </Setting>
+  <Setting Name="mediasettings.maximumimagesize">
+    <Value>1920</Value>
+  </Setting>
+  <Setting Name="allurethemesettings.preset">
+    <Value>Peach</Value>
+  </Setting>
+  <Setting Name="allurethemesettings.texture">
+    <Value>Texture_1</Value>
+  </Setting>
+  <Setting Name="allurethemesettings.alternativeproductpagelayout">
+    <Value>false</Value>
+  </Setting>
+  <Setting Name="cloudzoomsettings.zoomposition">
+    <Value>inside</Value>
+  </Setting>
+  <Setting Name="CloudZoomSettings.NumberOfPictureThumbnailsInCarousel-Allure">
+    <Value>5</Value>
+  </Setting>
+  <Setting Name="jcarouseldefaultsettings.imagesize">
+    <Value>335</Value>
+  </Setting>
+  <Setting Name="NopAjaxFiltersSettings.WidgetZone">
+    <Value>right_side_column_before</Value>
+  </Setting>
+  <Setting Name="NopAjaxFiltersSettings.ShowNumberOfReturnedProductsSelector">
+    <Value>.product-selectors</Value>
+  </Setting>
+  <Setting Name="MegaMenuSettings.MegaMenuCategoryTemplate">
+    <Value>CategoryMenuTemplate.WithPictures</Value>
+  </Setting>
+  <Setting Name="MegaMenuSettings.MegaMenuManufacturerTemplate">
+    <Value>ManufacturerMenuTemplate.WithPictures</Value>
+  </Setting>
+  <Setting Name="TabSettings.EnableProductPictureTab">
+    <Value>true</Value>
+  </Setting>
+  <Setting Name="TabSettings.EnableProductContactUsTab">
+    <Value>false</Value>
+  </Setting>
+  <Setting Name="QuickViewSettings.ProductItemSelectorChild">
+    <Value>.add-info</Value>
+  </Setting>
+  <Setting Name="QuickViewSettings.AccordionPanelsHeightStyle">
+    <Value>auto</Value>
+  </Setting>
+  <Setting Name="megamenusettings.categoriesimagesize">
+    <Value>100</Value>
+  </Setting>
+  <Setting Name="NopAjaxCartSettings.MiniProductDetailsViewImageSize">
+    <Value>125</Value>
+  </Setting>
+  <Setting Name="NopAjaxCartSettings.ProductAddedToCartImageSize">
+    <Value>120</Value>
+  </Setting>
+  <Setting Name="QuickViewSettings.ProductDetailsPictureSize">
+    <Value>250</Value>
+  </Setting>
+  <Setting Name="MegaMenuSettings.ManufacturerImageSize">
+    <Value>90</Value>
+  </Setting>
+  <Setting Name="CloudZoomSettings.ZoomHeight">
+    <Value>390</Value>
+  </Setting>
+  <Setting Name="CloudZoomSettings.ZoomWidth">
+    <Value>390</Value>
+  </Setting>
+</Settings>

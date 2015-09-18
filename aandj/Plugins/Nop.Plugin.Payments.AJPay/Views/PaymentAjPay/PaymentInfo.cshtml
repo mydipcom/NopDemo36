@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "";
+    //Html.AddCssFileParts("~/Plugins/Payments.AJPay/Content/style.css");//the onepage checkout is not able to load;
+    var storeLocation = EngineContext.Current.Resolve<Nop.Core.IWebHelper>().GetStoreLocation();
+}
+@model Nop.Plugin.Payments.AJPay.Models.PaymentInfoModel
+@using Nop.Web.Framework;
+@using Nop.Web.Framework.UI;
+@using Nop.Core.Infrastructure;
+
+@if (Model.EnableBankPay)
+{ 
+<style type="text/css">
+.alipay-methods {
+    overflow:hidden;
+}
+.alipay-methods li {
+    float: left;
+    margin: 6px 0;
+    margin-right: 10px;
+    width: 165px;
+    border: 1px solid #DDDDDD;
+    padding: 5px 1px 5px 5px;
+    cursor: pointer;
+    background: #fff;
+    position:relative;
+    list-style:none;
+}
+.alipay-methods li:hover,
+.alipay-methods li.selected {
+    border: 2px solid #e4393c;
+    padding: 4px 0 4px 4px;
+}
+
+.alipay-methods li input{
+    vertical-align: middle;
+    cursor: pointer;
+    position:relative;
+    top:10px;
+    float:left;
+    margin-left:5px;
+}
+
+ 
+.alipay-methods .icon:hover, .alipay-methods .icon.selected
+{
+
+}
+
+
+.alipay-methods .alipay {
+    background-image: url(@(storeLocation)Plugins/Payments.AJPay/content/images/logo.png);
+}
+ 
+</style>
+}
+
+<table width="100%" cellpadding="0" cellspacing="0">
+    <colgroup>
+        <col width="100" />
+        <col />
+    </colgroup>
+    <tr>
+        <td colspan="2">
+            <p>
+                <b>Select pay method, you will be redirected to A & J payment site to complete the order</b>
+            </p>
+        </td>
+    </tr>
+     
+</table>
+

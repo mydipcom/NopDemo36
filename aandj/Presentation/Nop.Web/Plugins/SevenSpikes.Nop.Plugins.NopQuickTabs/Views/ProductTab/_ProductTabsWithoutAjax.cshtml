@@ -1,0 +1,49 @@
+﻿@** Copyright 2015 Seven Spikes Ltd. All rights reserved. (http://www.nop-templates.com)
+* http://www.nop-templates.com/t/licensinginfo
+*@
+
+@using Nop.Core.Infrastructure
+@using Nop.Core
+@using SevenSpikes.Nop.Plugins.NopQuickTabs
+@model SevenSpikes.Nop.Plugins.NopQuickTabs.Models.TabUIModel
+    
+@{
+    var additionalClass = "";
+    if (Model.Tabs.Any(x => x.TabKey == "picture"))
+    {
+        additionalClass = "withPicture"; 
+    }
+}
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("#quickTabs").tabs();
+    });
+</script>
+
+<div id="quickTabs" class="productTabs @additionalClass">
+    <div class="productTabs-header">
+        <ul>
+            @foreach (var tabInfo in Model.Tabs)
+            {
+                <li>
+                    <a href="#quickTab-@tabInfo.TabKey">@tabInfo.Title</a>
+                </li>
+            }
+            @* Uncomment the code below if you want to have a Tab that gets its information from a Topic. This tab will be shown for all products in your store*@
+            @*<li><a href="#quickTab-ShippingInfo">@T("ShippingReturns")</a> </li>*@
+        </ul>
+    </div>
+    <div class="productTabs-body">
+        @foreach (var tabInfo in Model.Tabs)
+        {
+            <div id="quickTab-@tabInfo.TabKey">
+                @Html.Raw(tabInfo.Content)
+            </div>
+        }
+        @* Uncomment the code below if you want to have a Tab that gets its information from a Topic. This tab will be shown for all products in your store *@
+        @*<div id="quickTab-ShippingInfo">
+                @Html.Action("TopicBlock", "ProductTab", new { systemName = "ShippingInfo" })
+            </div>*@
+    </div>
+</div>

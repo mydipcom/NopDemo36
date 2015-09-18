@@ -1,0 +1,472 @@
+﻿/*=====================================================
+    
+    MAIN CSS / SMALLER MOBILE DEVICES
+
+=====================================================*/
+
+@media all and (min-width: 240px) {
+
+    *{
+	    direction: rtl;
+    }
+
+    .ui-dialog-titlebar span,
+    .newsletter-email input[type="text"],
+    .newsletter-email input[type="button"],
+    .block .tags li a,
+    .overview .add-to-cart-panel > *,
+    .variant-overview .add-to-cart-panel > *,
+    .product-review-item .review-title,
+    .cart-collaterals .coupon-code input[type="submit"],
+    .opc .step-title *,
+    .order-details-area td {
+	    float: right;
+    }
+    #lbCloseLink,
+    .product-review-item .product-review-box,
+    .estimate-shipping-button {
+	    float: left;
+    }
+    .side-2 .block .listbox,
+    .breadcrumb,
+    .product-list .buttons,
+    #lbBottom,
+    .product-details-page .overview,
+    .overview .buttons, .download-sample,
+    .product-reviews-overview,
+    .overview .prices,
+    .product-review-item,
+    .cart-total-left,
+    .cart-collaterals .hint,
+    .shipping-method .method-list, .payment-method .method-list,
+    .payment-info .info,
+    .sitemap-page .entity-title h2,
+    .news-head,
+    .blog-page .tags ul,
+    .blogpost-page .tags ul,
+    .blog-details,
+    .newsletter-email .options {
+	    text-align: right;
+    }
+    .ui-dialog-buttonset,
+    .cart-total-right {
+	    text-align: left;
+    }
+
+    .category-description ul,
+    .manufacturer-description ul,
+    .full-description ul,
+    .topic-block ul,
+    .topic-page ul,
+    .post-body ul{
+	    padding: 0 36px 0 0;
+    }
+    .category-description ol,
+    .manufacturer-description ol,
+    .full-description ol,
+    .topic-block ol,
+    .topic-page ol,
+    .post-body ol{
+	    padding: 0 36px 0 0;
+    }
+
+    #goToTop{
+	    left: 20px;
+	    right: auto;
+    }
+
+/*datepicker*/
+
+    .ui-datepicker {
+        background-color: #ffffff;
+        text-align: center;
+        width: 280px;
+    }
+    .ui-datepicker-title {
+        font-weight: bold;
+        line-height: 32px;
+        position: relative;
+        text-transform: uppercase;
+        z-index: 0;
+        color:#555;
+        font-family:Arial,sans-serif;
+        background:#fff;
+        border:1px solid #ccc;
+    } 
+.ui-datepicker-header a {
+    font-size: 0;
+    height: 32px;
+    position: absolute;
+    top: 0;
+    width: 32px;
+    z-index: 1;
+}
+
+    .ui-datepicker-header a.ui-datepicker-prev {
+        background: url("../img/arrow-right.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+        right: 0;
+        left:auto;
+    }
+    .ui-datepicker-header a.ui-datepicker-next {
+        background: url("../img/arrow-left.png") no-repeat scroll center center rgba(0, 0, 0, 0);
+        right: auto;
+        left:0;
+    }
+    .ui-datepicker-header {
+        background-color: #333333;
+        color: #ffffff;
+        height: 32px;
+        position: relative;
+    }
+    .ui-datepicker-calendar th, .ui-datepicker-calendar td {
+        border: 1px solid #cccccc;
+        width: 14.285%;
+    }
+    .ui-datepicker-calendar th {
+        background-color: #eeeeee;
+    }
+    .ui-datepicker-calendar th span, .ui-datepicker-calendar td a {
+        display: block;
+        line-height: 32px;
+        min-height: 32px;
+    }
+    .ui-datepicker-calendar td a {
+        -webkit-transition: all 0.2s ease-in-out 0s;
+        transition: all 0.2s ease-in-out 0s;
+    }
+    .ui-datepicker-calendar td:hover a {
+        background-color:#e87772;
+    }
+
+
+/*********** BAR NOTIFICATION & JQUERY POPUPS  ***********/
+
+
+
+    .bar-notification{
+	    right: 0;
+	    left: auto;
+	    padding: 12px 10px 12px 25px;
+    }
+    .bar-notification .content{
+	    float: right;
+	    margin: 0 0 0 10px;
+    }
+    .bar-notification .close{
+	    left: 0;
+	    right: auto;
+    }
+    .ui-dialog-titlebar button{
+	    left: 0;
+	    right: auto;
+    }
+    .ui-dialog-buttonset button{
+	    margin-right: 5px;
+	    margin-left: 0;
+    }
+    .ui-autocomplete.ui-menu.ui-widget.ui-widget-content img{
+	    margin-left: 5px;
+	    margin-right: 0;
+    }
+    .header-links li:first-child {
+        padding-left: 7px;
+    }
+    .header-links li{
+	    border-left: 1px solid rgba(0, 0, 0, 0.2);
+	    border-right: 0;
+    }
+    .language-list img{
+	    left: 0;
+	    right: 0;
+    }
+    .footer-upper:before,
+    .footer-upper:after{
+	    right: 0;
+	    left: 0;
+    }
+    .footer-middle .footer-block a:before,
+        .footer-middle .footer-block a:after{
+	    right: 0;
+	    left: auto;
+    }
+    .footer-middle .footer-block a:after{
+	    right: auto;
+	    left: 0;
+    }
+    .contact-block .footer-menu li{
+	    padding: 7px 40px 7px 2px;
+	    text-align: right;
+        background-position: right center;
+    }
+    .footer-store-theme select{
+	    right: 50%;
+	    left: auto;
+	    margin-right: -85px;
+	    margin-left: 0;
+    }
+    .newsletter-email .options span {
+        margin: 0 0 0 15px;
+    }
+    .side-2 .block .list a:after,
+    .side-2 .block .list strong:after{
+	    right: 0;
+	    left: auto;
+    }
+    .side-2 .block .sublist{
+	    padding: 0 20px 0 0;
+    }
+    .home-page-polls:before{
+	    right: 0;
+	    left: 0;
+    }
+    .product-selectors select{
+	    border-right: 0;
+	    border-left: 0;
+    }
+    .item-box .picture img{
+	    left: 0;
+	    right: 0;
+    }
+    .product-grid .item-box .visible-details:before{
+	    right: -1px;
+	    left: -1px;
+    }
+    .product-grid .item-box .hover-details{
+	    left: 0;
+	    right: 0;
+    }
+    .product-grid .item-box .description{
+	    right: 15px;
+	    left: 15px;
+    }
+    .product-grid .item-box .add-info{
+	    right: 15px;
+	    left: 15px;
+    }
+    .item-box .old-price{
+        line-height:22px;
+    }
+    .product-list .item-box:after{
+	    right: 0;
+	    left: auto;
+    }
+    .product-list .details{
+	    text-align: right;
+	    margin-right: 10px;
+	    margin-left: 0;
+    }
+    .home-page-category-grid .title,
+    .sub-category-item .title{
+	    right: 0;
+	    left: auto;
+    }
+
+    .pager li.previous-page * {
+        background-image: url('../img/next.png');
+        background-position: 15px center;
+    }
+    .pager li.next-page * {
+	    background-image: url('../img/prev.png');
+        background-position: 11px center;
+    }
+
+    .manufacturer-item .title:before{
+	    right: -1px;
+	    left: -1px;
+    }
+    .gallery .picture img,
+    .gallery .picture-thumbs img,
+    .variant-picture img{
+	    left: 0;
+	    right: 0;
+    }
+
+    #lbOverlay{
+	    right: 0;
+	    left: auto;
+    }
+    #lbImage{
+	    right: 0;
+	    left: auto;
+    }
+    #lbPrevLink{
+	    right: 0;
+	    left: auto;
+    }
+    #lbNextLink{
+	    left: 0;
+	    right: auto;
+    }
+    #lbCaption,
+    #lbNumber{
+	    margin: 0 0 0 70px;
+    }
+    .overview .add-to-wishlist-button, 
+    .variant-overview .add-to-wishlist-button, 
+    .overview .add-to-compare-list-button, 
+    .overview .email-a-friend-button, 
+    .overview .subscribe-button, 
+    .download-sample a{
+	    padding: 8px 32px 8px 10px;
+    }
+    .overview .add-to-wishlist:before,
+        .overview .compare-products:before, 
+        .overview .email-a-friend:before,
+        .overview .back-in-stock-subscription:before,
+        .overview .download-sample-button:before{
+	    right: 2px;
+	    left: auto;
+    }
+    .overview .qty-label,
+    .variant-overview .qty-label{
+	    right: -25px;
+	    left: auto;
+    }
+    .overview .qty-input,
+    .variant-overview .qty-input,
+    .overview .qty-dropdown,
+    .variant-overview .qty-dropdown{
+	    margin-left: -2px !important;
+	    margin-right: 0 !important;
+    }
+    .ui-tabs .ui-tabs-panel{
+	    right: 0;
+	    left: auto;
+    }
+    .product-tags-list li.separator{
+	    margin: 0 3px 0 5px;
+    }
+    .product-review-helpfulness .question{
+	    margin: 0 0 0 5px;
+    }
+    .product-review-helpfulness .result{
+	    margin: 0 10px 0 0;
+    }
+    .compare-products-page .clear-list, 
+    .compare-products-page .button-2{
+	    padding: 8px 8px 8px 26px;
+        background: url(../img/close-2.png) no-repeat 10% center;
+    }
+    .enter-password-form input[type="password"]{
+	    float: right !important;
+    }
+    .enter-password-form input[type="submit"]{
+	    float: right !important;
+    }
+    .account-page .page-title h1:after{
+	    right: 0;
+	    left: 0;
+    }
+    .registration-page select + select,
+    .account-page select + select{
+	    margin: 0 10px 0 0;
+    }
+    .address-item .buttons:before,
+            .order-item .buttons:before{
+	    right: -1px;
+	    left: -1px;
+    }
+    .order-progress a:before{
+	    background: #fff url(../img/arrow-left.png) no-repeat 15px center;
+    }
+    .shopping-cart-page .common-buttons .button-2{
+	    padding: 6px 36px 6px 16px;
+    }
+        .shopping-cart-page .common-buttons .update-cart-button {
+            background-position: right 6px;
+        }
+            .shopping-cart-page .common-buttons .update-cart-button:hover {
+                background-position: right -22px;
+            }
+
+        .shopping-cart-page .common-buttons .continue-shopping-button { 
+            background-position: right 4px;
+        }
+            .shopping-cart-page .common-buttons .continue-shopping-button:hover {
+                background-position: right -30px;
+            }
+    .remove-discount-button,
+    .remove-gift-card-button{
+	    margin: 0 5px 0 0;
+    }
+    .cart-collaterals .coupon-code input[type="text"]{
+	    float: right;
+	    border-right: 1px solid #c9c9c9;
+	    border-left: 0;
+    }
+    .payment-method .method-name > *{
+	    margin: 0 0 0 10px;
+    }
+    .order-review-data ul{
+	    border-right: 5px solid #e87772;
+	    border-left: 0;
+	    text-align: right;
+    }
+    .opc .step-title span{
+	    margin: 0 0 0 12px;
+    }
+    .opc .step{
+	    border-right: 5px solid #e87772;
+	    border-left: 0;
+    }
+    .order-details-area ul{
+	    border-right: 5px solid #e87772;
+	    border-left: 0;
+	    text-align: right;
+    }
+    .shipment-details-page .shipment-overview > ul{
+	    text-align: right;
+	    border-right: 5px solid #e87772;
+	    border-left: 0;
+    }
+    .search-input input + label{
+	    margin: 0 2px 0 0;
+    }
+    .advanced-search .price-range{
+	    margin: 0 -30px 0 0;
+    }
+    .sitemap-page a{
+	    padding: 0 16px 0 0;
+    }
+    .sitemap-page a:before{
+	    right: 5px;
+	    left: auto;
+    }
+    .news-items .news-item:after{
+	    right: -1px;
+	    left: -1px;
+    }
+    .blog-page .tags label,
+    .blogpost-page .tags label{
+	    float: right;
+	    padding: 0 20px 0 0;
+	    margin: 0 0 0 5px;
+    }
+    .blog-page .tags label:before,
+        .blogpost-page .tags label:before{
+	    right: 7px;
+	    left: auto;
+    }
+    .blog-page .tags li.separator,
+    .blogpost-page .tags li.separator{
+	    margin: 0 3px 0 5px;
+    }
+    .blog-posts .buttons a{
+	    padding: 6px 20px 6px 0;
+    }
+    .blog-posts .buttons a:before{
+	    right: 7px;
+	    left: auto;
+    }
+    .blog-comment, .news-comment{
+	    border-right: 5px solid #e87772;
+	    border-left: 0;
+    }
+    .comment-info .avatar img{
+	    left: 0;
+	    right: 0;
+    }
+    .order-details-page .tax-shipping-info{
+        text-align:right;
+    }
+}

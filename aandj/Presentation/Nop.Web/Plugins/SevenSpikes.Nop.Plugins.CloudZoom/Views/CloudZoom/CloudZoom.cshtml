@@ -1,0 +1,187 @@
+﻿@** Copyright 2015 Seven Spikes Ltd. All rights reserved. (http://www.nop-templates.com)
+* http://www.nop-templates.com/t/licensinginfo
+*@
+
+@using Nop.Core
+@using Nop.Core.Infrastructure
+@using Nop.Services.Configuration
+
+@model SevenSpikes.Nop.Plugins.CloudZoom.Models.CloudZoomModel
+
+@if (Model.DefaultPicture.FullSizeImageUrl != null && Model.DefaultPicture.FullSizeImageUrl != String.Empty)
+{
+    Html.AddCssFileParts("~/Plugins/SevenSpikes.Nop.Plugins.CloudZoom/Themes/" + Model.Theme + "/Content/cloud-zoom.1.0.2/CloudZoom.css");
+
+    Html.AddScriptParts("~/Plugins/SevenSpikes.Core/Scripts/SevenSpikesExtensions.js");
+    Html.AddScriptParts("~/Plugins/SevenSpikes.Nop.Plugins.CloudZoom/Scripts/cloud-zoom.1.0.2/cloud-zoom.1.0.2.min.js");
+
+    var supportRtl = EngineContext.Current.Resolve<IWorkContext>().WorkingLanguage.Rtl;
+    if (supportRtl)
+    {
+        Html.AddCssFileParts("~/Plugins/SevenSpikes.Nop.Plugins.CloudZoom/Styles/CloudZoom.common.rtl.css");
+    }
+
+    if (Model.IsIntegratedByWidget)
+    {
+        Html.AddScriptParts("~/Plugins/SevenSpikes.Nop.Plugins.CloudZoom/Scripts/cloud-zoom-custom.min.js");
+    }
+
+    var shouldShowPictureThumbnailsInCarousel = false;
+
+    if (Model.SettingsModel.EnablePictureThumbnailsInCarousel)
+    {
+        // Default Carousel Settings
+        const int numberOfVisibleItemsInCarouselDefaultValue = 3;
+        
+        // Theme specific settings
+        var settingKeyNumberOfVisibleItemsInCarousel = string.Format("CloudZoomSettings.NumberOfPictureThumbnailsInCarousel-{0}", Model.Theme);
+
+        int storeId = EngineContext.Current.Resolve<IStoreContext>().CurrentStore.Id;
+        int numberOfPictureThumbnailsInCarousel = EngineContext.Current.Resolve<ISettingService>().GetSettingByKey(settingKeyNumberOfVisibleItemsInCarousel, numberOfVisibleItemsInCarouselDefaultValue, storeId, true);
+
+        if (Model.Pictures.Count > numberOfPictureThumbnailsInCarousel)
+        {
+            shouldShowPictureThumbnailsInCarousel = true;
+        }
+    }
+
+    if (shouldShowPictureThumbnailsInCarousel)
+    {
+        @Html.Partial("_PictureThumbsInCarousel", Model)
+    }
+
+    var sb = new System.Text.StringBuilder();
+    foreach (var imageUrl in Model.Pictures)
+    {
+        sb.AppendFormat("[\"{0}\"],", imageUrl.FullSizeImageUrl);
+    }
+
+    var links = sb.ToString();
+    if (links.EndsWith(","))
+    {
+        links = links.Remove(links.Length - 1, 1);
+    }
+
+    links = "[" + links + "]";
+
+    if (Model.EnableClickToZoom)
+    {
+        Html.AddCssFileParts("~/Content/magnific-popup/magnific-popup.css");
+        Html.AddScriptParts("~/Scripts/jquery.magnific-popup.js");
+	
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".picture").on("click", ".mousetrap", function () {
+
+                var imgSources = new Array();
+                function imgItem(source){
+                    this.src = source;
+                }
+                if($('.picture-thumbs a.cloud-zoom-gallery').length < 1){
+                    imgSources.push( new imgItem($('.picture a.cloud-zoom').attr('href')));
+                }
+                $('.picture-thumbs a.cloud-zoom-gallery').each(function(){
+                    imgSources.push( new imgItem($(this).attr('href')));
+                });
+                var indexOfHighlightedImage = 0;
+                for (var i = 0; i < imgSources.length; i++) {
+                    if(imgSources[i].src == $('.picture a.cloud-zoom').attr('href')){
+                        indexOfHighlightedImage = i;
+                        break;
+                    }
+                }
+
+                $.magnificPopup.open({
+                    items: imgSources,
+                    type: 'image',
+                    removalDelay: 300,
+                    gallery: {
+                        enabled: true
+                    }
+                }, indexOfHighlightedImage);
+            });
+        });
+        
+    </script>
+    }
+    <script type="text/javascript">
+         @{
+    string pictureAdjustmentTableName = string.Format("productAttributeValueAdjustmentTable_{0}", Model.ProductId);
+    string pictureAdjustmentFuncName = string.Format("adjustProductAttributeValuePicture_CloudZoom_{0}", Model.ProductId);
+    string pictureDefaultSizePrefix = "defaultsize";
+    string pictureFullSizePrefix = "fullsize";
+        }
+
+        function @(pictureAdjustmentFuncName)(controlId, productId) {
+            var ctrl = $('#' + controlId);
+            var pictureDefaultSizeUrl = '';
+            var pictureFullSizeUrl = '';
+            if((ctrl.is(':radio') && ctrl.is(':checked')) || (ctrl.is(':checkbox') && ctrl.is(':checked'))) {
+                pictureDefaultSizeUrl = @(pictureAdjustmentTableName)[controlId + '_@(pictureDefaultSizePrefix)'];
+                pictureFullSizeUrl = @(pictureAdjustmentTableName)[controlId + '_@(pictureFullSizePrefix)'];
+            } else if(ctrl.is('select')) {
+                var idx = $('#' + controlId + " option").index($('#' + controlId + " option:selected"));
+                if(idx != -1) {
+                    pictureDefaultSizeUrl = @(pictureAdjustmentTableName)[controlId + '_@(pictureDefaultSizePrefix)'][idx];
+                    pictureFullSizeUrl = @(pictureAdjustmentTableName)[controlId + '_@(pictureFullSizePrefix)'][idx];
+                }
+            }            
+
+            if (typeof pictureFullSizeUrl == 'string' && pictureFullSizeUrl != '') {
+                var zoomGallerySelector = ".cloud-zoom-gallery[href='" + pictureFullSizeUrl + "']";
+            $(zoomGallerySelector).click();
+        }
+    }
+
+        $(document).ready(function () {            
+        $("[id^='product_attribute_@(Model.ProductId)_']").each(function() {
+                $(this).change(function() {
+                    var id = $(this).attr('id');
+                    @(pictureAdjustmentFuncName)(id);
+                });
+            });
+        });
+    </script>
+    
+    <div class="gallery sevenspikes-cloudzoom-gallery">
+        <div class="picture-wrapper">
+            <div class="picture" id="sevenspikes-cloud-zoom" data-zoomwindowelementid="@Model.ElementId"
+                 data-selectoroftheparentelementofthecloudzoomwindow="@Model.SettingsModel.SelectorOfTheParentElementOfTheCloudZoomWindow"
+                 data-defaultimagecontainerselector="@Model.SettingsModel.DefaultImageContainerSelector">
+                <a href="@Model.DefaultPicture.FullSizeImageUrl" class="cloud-zoom" id="zoom1" rel="@Model.DefaultPicture.DefaultRelation">
+                    <img src="@Model.DefaultPicture.SmallImageUrl" alt="@Model.DefaultPicture.AlternateText" title="@Model.DefaultPicture.Title" id="cloudZoomImage" itemprop="image" />
+                </a>
+            </div>
+        </div>
+        @if (Model.Pictures.Count > 1)
+        {
+            <div class="picture-thumbs">
+                @if (shouldShowPictureThumbnailsInCarousel)
+                {
+                    <ul id="carousel" class="jcarousel jcarousel-skin-thumbs">
+                        @foreach (var picture in Model.Pictures)
+                        {
+                        <li>
+                            <a href="@picture.FullSizeImageUrl" class="cloud-zoom-gallery" title="@picture.Title" rel="@picture.GalleryRelation">
+                                <img class="cloud-zoom-gallery-img" src="@picture.TinyImageUrl" alt="@picture.AlternateText" title="@picture.Title"/>
+                            </a>
+                        </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    foreach (var picture in Model.Pictures)
+                    {
+                    <a href="@picture.FullSizeImageUrl" class="cloud-zoom-gallery" title="@picture.Title" rel="@picture.GalleryRelation">
+                        <img class="cloud-zoom-gallery-img" src="@picture.TinyImageUrl" alt="@picture.AlternateText" title="@picture.Title" />
+                    </a>
+                    }
+                }
+
+            </div>
+        }
+
+    </div>
+}

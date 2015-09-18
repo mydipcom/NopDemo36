@@ -1,0 +1,36 @@
+﻿<div id="${jDropDownId}" class="${jDropDownCss}">
+        
+    <div class="toplevel">
+        <p></p>
+    </div>
+
+    <ul class="sublevel">
+        {{each dropDownOptions}}
+            <li>
+                <span data-dropDownOptionValue="${$value.dropDownOptionValue}">${$value.dropDownOptionName}</span>
+            </li>
+        {{/each}}
+    </ul>
+</div>
+
+<script type="text/javascript">
+   
+
+    
+    var selectedOptionIndex  = 0;
+
+    {{if $item.selectedOptionIndex}}
+
+        selectedOptionIndex = ${$item.selectedOptionIndex};
+
+    {{/if}}
+
+    $("#${jDropDownId}").jDropDown({ selected: selectedOptionIndex });
+
+    $("#${jDropDownId} ul li span").each(function(){
+
+        $(this).click(${$item.dropDownOptionClickCallback});
+            
+    });
+
+</script>

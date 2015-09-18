@@ -1,0 +1,63 @@
+﻿@{
+    Layout = "~/Views/Shared/_Root.Head.cshtml";
+}
+
+@Html.Widget("body_start_html_tag_after")
+@Html.Partial("_Notifications")
+@Html.Action("JavaScriptDisabledWarning", "Common")
+@Html.Partial("OldInternetExplorerWarning")
+<div class="master-wrapper-page">
+    @Html.Action("AdminHeaderLinks", "Common")
+    @Html.Partial("Header")
+    <div class="overlayOffCanvas"></div>
+    <div class="responsive-nav-wrapper-parent">
+        <div class="responsive-nav-wrapper">
+            <div class="menu-title">
+                <span>@T("SevenSpikes.Themes.Common.MenuTitle")</span>
+            </div>
+            <div class="search-wrap">
+                <span>@T("Search")</span>
+            </div>
+            <div class="shopping-cart-link">
+                <a href="@Url.RouteUrl("ShoppingCart")">@T("ShoppingCart")</a>
+            </div>
+            <div class="filters-button">
+                <span>@T("SevenSpikes.Themes.Common.Filters")</span>
+            </div>
+            <div class="personal-button" id="header-links-opener">
+                <span>@T("SevenSpikes.Themes.Common.Personal")</span>
+            </div>
+        </div>
+    </div>
+    @if (IsSectionDefined("HomePage"))
+    {
+        // Render the empty to avoid an error. We use this section just to know whether we are on the home page or not
+        @RenderSection("HomePage");
+
+        @Html.Widget("home_page_main_slider");
+    }
+    <div class="master-wrapper-content">
+        <script type="text/javascript">
+            AjaxCart.init(false, '.header-links .cart-qty', '.header-links .wishlist-qty', '#flyout-cart');
+        </script>
+        @Html.Widget("content_before")
+        @*ajax loading window*@
+        <div class="ajax-loading-block-window" style="display: none">
+            <div class="loading-image">
+            </div>
+        </div>
+        <div class="master-column-wrapper">
+            @RenderBody()
+        </div>
+        @Html.Widget("content_after")
+    </div>
+    @if (IsSectionDefined("HomePage"))
+    {
+        @Html.Action("HomePageNews", "News")
+        @Html.Action("HomePagePolls", "Poll")
+        @Html.Action("TopicBlock", "Topic", new { systemName = "HomePageText" })
+    }
+</div>
+@Html.Action("Footer", "Common")
+@Html.Action("EuCookieLaw", "Common")
+@Html.Widget("body_end_html_tag_before")

@@ -1,0 +1,111 @@
+﻿@model SevenSpikes.Nop.Plugins.QuickView.Models.QuickViewProductPageModel
+
+ <script type="text/javascript">
+         @{
+    string pictureAdjustmentTableName = string.Format("productAttributeValueAdjustmentTable_{0}", Model.ProductDetails.Id);
+    string pictureAdjustmentFuncName = string.Format("adjustProductAttributeValuePicture_CloudZoom_{0}", Model.ProductDetails.Id);
+    string pictureDefaultSizePrefix = "defaultsize";
+    string pictureFullSizePrefix = "fullsize";
+        }
+
+     function @(pictureAdjustmentFuncName)(controlId, productId) {
+            var ctrl = $('#' + controlId);
+            var pictureDefaultSizeUrl = '';
+            var pictureFullSizeUrl = '';
+            if((ctrl.is(':radio') && ctrl.is(':checked')) || (ctrl.is(':checkbox') && ctrl.is(':checked'))) {
+                pictureDefaultSizeUrl = @(pictureAdjustmentTableName)[controlId + '_@(pictureDefaultSizePrefix)'];
+                pictureFullSizeUrl = @(pictureAdjustmentTableName)[controlId + '_@(pictureFullSizePrefix)'];
+            } else if(ctrl.is('select')) {
+                var idx = $('#' + controlId + " option").index($('#' + controlId + " option:selected"));
+                if(idx != -1) {
+                    pictureDefaultSizeUrl = @(pictureAdjustmentTableName)[controlId + '_@(pictureDefaultSizePrefix)'][idx];
+                    pictureFullSizeUrl = @(pictureAdjustmentTableName)[controlId + '_@(pictureFullSizePrefix)'][idx];
+                }
+            }
+
+         if (typeof pictureDefaultSizeUrl == 'string' && pictureDefaultSizeUrl != '') {
+             ChangeMainImage(pictureDefaultSizeUrl);
+        }
+    }
+
+        $("[id^='product_attribute_@(Model.ProductDetails.Id)_']").each(function() {
+                $(this).change(function() {
+                    var id = $(this).attr('id');
+                    @(pictureAdjustmentFuncName)(id);
+                });
+            });
+        
+</script>
+
+
+@if (Model.QuickViewSettings.EnableCloudZoom && Model.ProductDetails.DefaultPictureModel.CustomProperties.ContainsKey("SmallImageUrl"))
+{
+    const string defaultRelation = "position: 'inside', smoothMove: 3, showTitle: 'False', titleOpacity: 0";
+    const string galleryRelation = "position: 'inside', smoothMove: 3, showTitle: 'False', titleOpacity: 0,  useZoom: 'zoom1', smallImage: '{0}'";
+
+    var defaultSmallImageUrl = Model.ProductDetails.DefaultPictureModel.CustomProperties["SmallImageUrl"].ToString();
+
+    <div class="picture">
+        <a href="@Model.ProductDetails.DefaultPictureModel.FullSizeImageUrl" class="cloud-zoom" id="zoom1" rel="@defaultRelation">
+            <img src="@defaultSmallImageUrl" alt="@Model.ProductDetails.DefaultPictureModel.AlternateText" title="@Model.ProductDetails.DefaultPictureModel.Title" id="cloudZoomImage" />
+        </a>
+    </div>
+
+    if (Model.ProductDetails.PictureModels.Count > 1)
+    {
+    <div class="thumbnails">
+        @foreach (var picture in Model.ProductDetails.PictureModels)
+        {
+            var smallImageUrl = "";
+            if (picture.CustomProperties.ContainsKey("SmallImageUrl"))
+            {
+                smallImageUrl = picture.CustomProperties["SmallImageUrl"].ToString();
+            }
+
+            var tinyImateUrl = "";
+
+            if (picture.CustomProperties.ContainsKey("TinyImageUrl"))
+            {
+                tinyImateUrl = picture.CustomProperties["TinyImageUrl"].ToString();
+            }
+
+            <a href="@picture.FullSizeImageUrl" class="cloud-zoom-gallery" title="@picture.Title" rel="@String.Format(galleryRelation, smallImageUrl)">
+                <img class="cloud-zoom-gallery-img" src="@tinyImateUrl" alt="@picture.AlternateText" title="@picture.Title" />
+            </a>
+        }
+    </div>
+    }
+    
+    <script type="text/javascript">
+        
+        function ChangeMainImage(pictureDefaultSizeUrl) {
+            pictureDefaultSizeUrl = pictureDefaultSizeUrl.substring(1, pictureDefaultSizeUrl.length - 9);
+            var zoomGallerySelector = ".cloud-zoom-gallery[rel*='" + pictureDefaultSizeUrl + "']";
+           $(zoomGallerySelector).click();
+        }
+        
+    </script>
+}
+else
+{
+    <div class="picture">
+        <img alt="@Model.ProductDetails.DefaultPictureModel.AlternateText" src="@Model.ProductDetails.DefaultPictureModel.ImageUrl" />
+    </div>
+    if (Model.ProductDetails.PictureModels.Count > 1)
+    {
+    <div class="thumbnails">
+
+        @foreach (var picture in Model.ProductDetails.PictureModels)
+        {
+            <img src="@picture.ImageUrl" alt="@picture.AlternateText" />
+        }
+
+    </div>
+    }
+    
+    <script type="text/javascript">        
+        function ChangeMainImage(pictureDefaultSizeUrl) {
+            $(".quickViewWindow .gallery .picture img").attr("src", pictureDefaultSizeUrl);
+        }        
+    </script>
+}
